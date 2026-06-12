@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales Dashboard | Jaya Sai Abhiram</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/scrollytelling.css?v=16">
+  <script src="js/scrollytelling.js?v=16" defer></script>
+  <style>
+    /* CSS Animated Background */
+    .gen-bg {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(135deg, #022c22 0%, #064e3b 30%, #065f46 60%, #022c22 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+      overflow: hidden;
+    }
+    @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+    /* CSS Floating Dashboard Elements */
+    .gen-bg::before, .gen-bg::after {
+      content: ''; position: absolute; border-radius: 12px;
+      background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); backdrop-filter: blur(10px);
+      will-change: transform;
+    }
+    .gen-bg::before {
+      width: 400px; height: 250px; top: 15%; left: 10%;
+      animation: floatDash1 15s ease-in-out infinite;
+    }
+    .gen-bg::after {
+      width: 300px; height: 350px; bottom: 10%; right: 15%;
+      animation: floatDash2 18s ease-in-out infinite;
+    }
+    @keyframes floatDash1 { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-40px) rotate(-2deg); } }
+    @keyframes floatDash2 { 0%, 100% { transform: translateY(0) rotate(5deg); } 50% { transform: translateY(40px) rotate(2deg); } }
+
+    /* Custom Glass Panel for Data Theme */
+    .glass-panel { border: 1px solid rgba(16, 185, 129, 0.2); }
+    .glass-panel::before { background: linear-gradient(90deg, transparent, rgba(16,185,129,0.5), transparent); }
+    .glass-tag { color: rgba(52, 211, 153, 1); }
+    .glass-title { background: linear-gradient(to bottom, #ffffff, rgba(52,211,153,0.8)); -webkit-background-clip: text; }
+    
+    .final-cta { background: linear-gradient(135deg, #059669, #10b981); box-shadow: 0 4px 15px rgba(16,185,129,0.3); }
+    .final-cta:hover { box-shadow: 0 10px 30px rgba(16,185,129,0.5); }
+    .intro-text h1 { background: linear-gradient(to bottom, #ffffff, rgba(52,211,153,0.8)); -webkit-background-clip: text; }
+
+    /* CSS Bar Chart Visual */
+    .css-chart { display: flex; align-items: flex-end; gap: 8px; height: 120px; margin-top: 1.5rem; padding-bottom: 10px; border-bottom: 2px solid rgba(255,255,255,0.1); }
+    .css-bar { width: 40px; background: linear-gradient(to top, rgba(16,185,129,0.5), rgba(52,211,153,0.9)); border-radius: 4px 4px 0 0; transform-origin: bottom; animation: growBar 2s ease forwards; opacity: 0; }
+    .css-bar:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+    .css-bar:nth-child(2) { height: 60%; animation-delay: 0.2s; }
+    .css-bar:nth-child(3) { height: 30%; animation-delay: 0.3s; }
+    .css-bar:nth-child(4) { height: 80%; animation-delay: 0.4s; }
+    .css-bar:nth-child(5) { height: 100%; animation-delay: 0.5s; background: linear-gradient(to top, rgba(59,130,246,0.5), rgba(96,165,250,0.9)); box-shadow: 0 0 20px rgba(96,165,250,0.5); }
+    @keyframes growBar { 0% { transform: scaleY(0); opacity: 0; } 100% { transform: scaleY(1); opacity: 1; } }
+
+    /* Data Tags */
+    .data-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 1.5rem; }
+    .data-tag { padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(52,211,153,0.3); background: rgba(52,211,153,0.05); color: #6ee7b7; }
+    
+    /* Metrics Grid */
+    .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+    .metric-card { padding: 1rem; background: rgba(0,0,0,0.4); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
+    .metric-value { font-size: 2rem; font-weight: 800; color: #34d399; }
+    .metric-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-top: 4px; }
+
+    /* Companion Visuals */
+    .sheet-stack { position: relative; width: 250px; height: 300px; perspective: 1000px; }
+    .sheet { position: absolute; width: 200px; height: 150px; background: rgba(255,255,255,0.9); border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: column; padding: 10px; border: 1px solid #ccc; }
+    .sheet-header { height: 15px; background: #10b981; border-radius: 2px; margin-bottom: 5px; width: 100%; }
+    .sheet-row { height: 8px; background: #e5e7eb; border-radius: 2px; margin-bottom: 4px; width: 100%; }
+    .sheet:nth-child(1) { top: 20px; left: 10px; transform: rotate(-10deg) translateZ(-50px); filter: brightness(0.6); }
+    .sheet:nth-child(2) { top: 60px; left: 40px; transform: rotate(5deg) translateZ(-25px); filter: brightness(0.8); }
+    .sheet:nth-child(3) { top: 100px; left: 20px; transform: rotate(-5deg) translateZ(0); }
+
+    .glow-card { background: rgba(6,78,59,0.5); border: 2px solid #34d399; box-shadow: 0 0 30px rgba(52,211,153,0.4), inset 0 0 15px rgba(52,211,153,0.2); padding: 2rem; border-radius: 16px; width: 250px; text-align: center; }
+    .glow-line { display: flex; align-items: flex-end; gap: 4px; height: 60px; margin-top: 20px; }
+    .glow-bar { flex: 1; background: #34d399; border-radius: 2px 2px 0 0; animation: grow 2s ease forwards; transform-origin: bottom; }
+    .glow-bar:nth-child(1) { height: 30%; animation-delay: 0.1s; } .glow-bar:nth-child(2) { height: 50%; animation-delay: 0.2s; } .glow-bar:nth-child(3) { height: 40%; animation-delay: 0.3s; } .glow-bar:nth-child(4) { height: 80%; animation-delay: 0.4s; } .glow-bar:nth-child(5) { height: 100%; animation-delay: 0.5s; background: #fff; box-shadow: 0 0 15px #fff; }
+
+    .security-lock { width: 100px; height: 100px; border-radius: 50%; background: rgba(52,211,153,0.1); border: 2px dashed #34d399; display: flex; align-items: center; justify-content: center; position: relative; animation: spinDashed 10s linear infinite; }
+    .lock-inner { position: absolute; font-size: 3rem; animation: none; transform: rotate(0); text-shadow: 0 0 20px #34d399; }
+    @keyframes spinDashed { 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <header class="scrolly-header">
+    <a href="index.html#projects" onclick="if(window.history.length > 1) { window.history.back(); return false; }" class="btn-back">← Back to Portfolio</a>
+    <span class="scrolly-logo">Sales Dashboard</span>
+  </header>
+
+  <main class="scrolly-container">
+    <div class="fixed-bg">
+      <div class="gen-bg"></div>
+      <div class="bg-mask-layer"></div>
+    </div>
+
+    <!-- Section 1 -->
+    <section class="scrolly-section center intro-text" data-start="0.0" data-end="0.15">
+      <h1>Sales Analytics Dashboard</h1>
+      <p>Transforming raw regional data into strategic decisions.</p>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="scrolly-section left" data-start="0.2" data-end="0.35">
+      <div class="glass-panel">
+        <span class="glass-tag">The Challenge</span>
+        <h2 class="glass-title">Buried in spreadsheets.</h2>
+        <p class="glass-desc">
+          Regional sales managers were drowning in isolated data. Monthly reporting took 3+ days of manual compilation. There was zero real-time visibility into cross-regional performance, and leadership lacked the ability to drill down into anomalies instantly.
+        </p>
+        <div class="metric-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+          <div class="metric-card"><div class="metric-value">3 Days</div><div class="metric-label">Old Reporting Time</div></div>
+          <div class="metric-card"><div class="metric-value">14</div><div class="metric-label">Data Sources</div></div>
+          <div class="metric-card" style="border-color: rgba(244,63,94,0.3);"><div class="metric-value" style="color: #fb7185;">0</div><div class="metric-label">Real-time Visibility</div></div>
+        </div>
+      </div>
+      <div class="companion-visual">
+        <div class="sheet-stack">
+          <div class="sheet"><div class="sheet-header"></div><div class="sheet-row"></div><div class="sheet-row"></div><div class="sheet-row"></div><div class="sheet-row"></div></div>
+          <div class="sheet"><div class="sheet-header"></div><div class="sheet-row"></div><div class="sheet-row"></div><div class="sheet-row"></div><div class="sheet-row"></div></div>
+          <div class="sheet"><div class="sheet-header"></div><div class="sheet-row" style="background:#f43f5e;width:60%"></div><div class="sheet-row"></div><div class="sheet-row"></div><div class="sheet-row"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="scrolly-section right" data-start="0.4" data-end="0.55">
+      <div class="companion-visual">
+        <div class="glow-card">
+          <div style="font-size:14px; color:#a7f3d0; text-transform:uppercase; font-weight:bold; letter-spacing:1px; margin-bottom:10px;">Regional Revenue</div>
+          <div style="font-size:36px; font-weight:900; color:#fff; text-shadow:0 0 20px #fff;">$2.4M</div>
+          <div class="glow-line">
+            <div class="glow-bar"></div><div class="glow-bar"></div><div class="glow-bar"></div><div class="glow-bar"></div><div class="glow-bar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="glass-panel">
+        <span class="glass-tag">The Architecture</span>
+        <h2 class="glass-title">Powered by DAX & SQL.</h2>
+        <p class="glass-desc">
+          I engineered a fully automated pipeline extracting data from legacy SQL databases into Power BI. Under the hood, 15+ complex DAX formulas compute real-time YOY growth, 90-day moving averages, and demographic segmentation.
+        </p>
+        <div class="css-chart">
+          <div class="css-bar"></div><div class="css-bar"></div><div class="css-bar"></div><div class="css-bar"></div><div class="css-bar"></div>
+        </div>
+        <div class="data-tags">
+          <span class="data-tag">Power BI</span><span class="data-tag">DAX</span><span class="data-tag">SQL</span><span class="data-tag">ETL Pipelines</span><span class="data-tag">Row-Level Security</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="scrolly-section left" data-start="0.6" data-end="0.75">
+      <div class="glass-panel">
+        <span class="glass-tag">User Experience</span>
+        <h2 class="glass-title">Interactive & Secure slicing.</h2>
+        <p class="glass-desc">
+          The dashboard utilizes intuitive cross-filtering, allowing executives to pivot from a high-level global overview down to individual SKU performance in seconds. Strict Row-Level Security (RLS) ensures each regional manager sees only their territory.
+        </p>
+      </div>
+      <div class="companion-visual">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:20px;">
+          <div class="security-lock"></div>
+          <div class="lock-inner">🔒</div>
+          <div style="color:#34d399; font-weight:bold; letter-spacing:2px; text-shadow:0 0 10px #34d399;">ROW-LEVEL SECURITY</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5 -->
+    <section class="scrolly-section center" data-start="0.8" data-end="1.0">
+      <div class="glass-panel" style="max-width: 800px;">
+        <span class="glass-tag">The Impact</span>
+        <h2 class="glass-title" style="font-size: 3.5rem;">Clarity at scale.</h2>
+        <div class="metric-grid" style="margin-bottom: 2rem;">
+          <div class="metric-card"><div class="metric-value">15 Mins</div><div class="metric-label">New Reporting Time</div></div>
+          <div class="metric-card"><div class="metric-value">40%</div><div class="metric-label">Faster Decision Making</div></div>
+          <div class="metric-card"><div class="metric-value">$120K</div><div class="metric-label">Upsell Ops Discovered</div></div>
+          <div class="metric-card"><div class="metric-value">100%</div><div class="metric-label">Adoption Rate</div></div>
+        </div>
+        <a href="index.html"><button class="final-cta">Back to Portfolio</button></a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

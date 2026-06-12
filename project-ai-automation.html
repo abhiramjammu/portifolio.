@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Automation | Jaya Sai Abhiram</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/scrollytelling.css?v=16">
+  <script src="js/scrollytelling.js?v=16" defer></script>
+  <style>
+    /* CSS Animated Background */
+    .gen-bg {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(135deg, #2e1065 0%, #4c1d95 30%, #581c87 60%, #312e81 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+      overflow: hidden;
+    }
+    @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+    /* Floating AI Nodes */
+    .bg-nodes { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; }
+    .bg-nodes::before, .bg-nodes::after {
+      content: ''; position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(167,139,250,0.4) 0%, transparent 60%);
+      filter: blur(40px); will-change: transform;
+    }
+    .bg-nodes::before { width: 500px; height: 500px; top: -10%; left: -10%; animation: floatNode1 12s ease-in-out infinite alternate; }
+    .bg-nodes::after { width: 600px; height: 600px; bottom: -20%; right: -10%; animation: floatNode2 15s ease-in-out infinite alternate; }
+    @keyframes floatNode1 { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(100px, 50px) scale(1.2); } }
+    @keyframes floatNode2 { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-150px, -100px) scale(0.8); } }
+
+    /* Custom Glass Panel for AI Theme */
+    .glass-panel { border: 1px solid rgba(167, 139, 250, 0.2); }
+    .glass-panel::before { background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.5), transparent); }
+    .glass-tag { color: #c4b5fd; }
+    .glass-title { background: linear-gradient(to bottom, #ffffff, #c4b5fd); -webkit-background-clip: text; }
+    
+    .final-cta { background: linear-gradient(135deg, #7c3aed, #a855f7); box-shadow: 0 4px 15px rgba(124,58,237,0.3); }
+    .final-cta:hover { box-shadow: 0 10px 30px rgba(124,58,237,0.5); }
+    .intro-text h1 { background: linear-gradient(to bottom, #ffffff, #c4b5fd); -webkit-background-clip: text; }
+
+    /* Tech Tags */
+    .data-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 1.5rem; }
+    .data-tag { padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(167,139,250,0.3); background: rgba(167,139,250,0.1); color: #ddd6fe; }
+    
+    /* Metrics Grid */
+    .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+    .metric-card { padding: 1rem; background: rgba(0,0,0,0.4); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
+    .metric-value { font-size: 2.5rem; font-weight: 800; color: #a78bfa; }
+    .metric-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); text-transform: uppercase; margin-top: 4px; letter-spacing: 0.5px; }
+
+    /* Companion Visuals */
+    .clock { width: 180px; height: 180px; border: 4px solid #c4b5fd; border-radius: 50%; position: relative; box-shadow: 0 0 30px rgba(167,139,250,0.4), inset 0 0 20px rgba(167,139,250,0.2); }
+    .clock::after { content: ''; position: absolute; top: 50%; left: 50%; width: 4px; height: 60px; background: #c4b5fd; transform-origin: bottom center; margin-top: -60px; margin-left: -2px; animation: spinClock 2s linear infinite; border-radius: 2px; }
+    .clock::before { content: ''; position: absolute; top: 50%; left: 50%; width: 4px; height: 40px; background: #c4b5fd; transform-origin: bottom center; margin-top: -40px; margin-left: -2px; animation: spinClock 12s linear infinite; border-radius: 2px; }
+    .clock-center { position: absolute; top: 50%; left: 50%; width: 14px; height: 14px; background: #c4b5fd; border-radius: 50%; transform: translate(-50%, -50%); z-index: 2; }
+    @keyframes spinClock { 100% { transform: rotate(360deg); } }
+
+    .neural-net { width: 250px; height: 250px; position: relative; }
+    .n-node { width: 50px; height: 50px; background: #8b5cf6; border-radius: 50%; position: absolute; box-shadow: 0 0 20px rgba(139,92,246,0.8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border: 2px solid #ddd6fe; z-index: 2; font-size: 0.8rem; }
+    .n-node:nth-child(1) { top: 0; left: 100px; animation: pulseNode 2s infinite; }
+    .n-node:nth-child(2) { top: 100px; left: 0; animation: pulseNode 2s infinite 0.4s; }
+    .n-node:nth-child(3) { top: 100px; left: 200px; animation: pulseNode 2s infinite 0.8s; }
+    .n-node:nth-child(4) { top: 200px; left: 50px; animation: pulseNode 2s infinite 1.2s; }
+    .n-node:nth-child(5) { top: 200px; left: 150px; animation: pulseNode 2s infinite 1.6s; }
+    .n-link { position: absolute; background: rgba(139,92,246,0.5); height: 2px; transform-origin: left center; z-index: 1; }
+    @keyframes pulseNode { 50% { box-shadow: 0 0 40px rgba(139,92,246,1); transform: scale(1.1); } }
+
+    .film-strip { width: 300px; height: 200px; background: rgba(0,0,0,0.8); border: 2px solid #a78bfa; border-radius: 12px; position: relative; padding: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 40px rgba(167,139,250,0.4); }
+    .film-holes { position: absolute; top: 0; bottom: 0; width: 24px; display: flex; flex-direction: column; justify-content: space-around; padding: 10px 0; }
+    .film-holes.left { left: 8px; } .film-holes.right { right: 8px; }
+    .film-hole { width: 14px; height: 14px; background: transparent; border: 2px solid rgba(255,255,255,0.4); border-radius: 4px; }
+    .film-content { width: 200px; height: 140px; background: linear-gradient(135deg, #4c1d95, #7c3aed); position: relative; display: flex; align-items: center; justify-content: center; border-radius: 6px; overflow: hidden; }
+    .film-content::after { content: '▶'; color: white; font-size: 3rem; text-shadow: 0 0 20px rgba(255,255,255,0.8); }
+    .film-scan { position: absolute; top: 0; left: 0; width: 100%; height: 10px; background: rgba(255,255,255,0.5); filter: blur(5px); animation: filmScan 2s linear infinite; }
+    @keyframes filmScan { 0% { top: -20px; } 100% { top: 160px; } }
+  </style>
+</head>
+<body>
+  <header class="scrolly-header">
+    <a href="index.html#projects" onclick="if(window.history.length > 1) { window.history.back(); return false; }" class="btn-back">← Back to Portfolio</a>
+    <span class="scrolly-logo">AI Automation</span>
+  </header>
+
+  <main class="scrolly-container">
+    <div class="fixed-bg">
+      <div class="gen-bg"></div>
+      <div class="bg-floating-shape bg-shape-1"></div>
+      <div class="bg-floating-shape bg-shape-2"></div>
+      <div class="bg-mask-layer"></div>
+    </div>
+
+    <!-- Section 1 -->
+    <section class="scrolly-section center intro-text" data-start="0.0" data-end="0.15">
+      <h1>AI-Powered Workflow Automation</h1>
+      <p>Where generative intelligence meets production efficiency.</p>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="scrolly-section right" data-start="0.2" data-end="0.35">
+      <div class="companion-visual">
+        <div class="clock"><div class="clock-center"></div></div>
+      </div>
+      <div class="glass-panel">
+        <span class="glass-tag">The Bottleneck</span>
+        <h2 class="glass-title">Manual processes drain creativity.</h2>
+        <p class="glass-desc">
+          Creative teams at Digpat Solutions were spending 60% of their time on repetitive admin: data summarization, asset tagging, social copy drafting, and report formatting. Average content turnaround was stuck at 4.5 days, and team morale was dropping from rapid burnout.
+        </p>
+        <div class="metric-grid">
+          <div class="metric-card"><div class="metric-value">60%</div><div class="metric-label">Time Wasted on Admin</div></div>
+          <div class="metric-card"><div class="metric-value">4.5 Days</div><div class="metric-label">Old Turnaround Time</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="scrolly-section left" data-start="0.4" data-end="0.55">
+      <div class="glass-panel">
+        <span class="glass-tag">The System</span>
+        <h2 class="glass-title">Custom GPTs at scale.</h2>
+        <p class="glass-desc">
+          I architected and deployed a suite of 5 purpose-built Custom GPTs integrated directly into the team's workspace. They handle brand-voice copy generation, automated brief extraction, and asset metadata tagging. The Claude API was integrated specifically for complex, multi-step reasoning tasks that require large context windows.
+        </p>
+        <div class="data-tags">
+          <span class="data-tag">OpenAI API</span><span class="data-tag">Claude 3</span><span class="data-tag">Custom GPTs</span><span class="data-tag">Python Automation</span>
+        </div>
+      </div>
+      <div class="companion-visual">
+        <div class="neural-net">
+          <div class="n-node">GPT-1</div><div class="n-node">GPT-2</div><div class="n-node">GPT-3</div><div class="n-node">GPT-4</div><div class="n-node">GPT-5</div>
+          <!-- Hardcoded lines for simplicity -->
+          <div class="n-link" style="width:141px; top:25px; left:125px; transform:rotate(135deg);"></div>
+          <div class="n-link" style="width:141px; top:25px; left:125px; transform:rotate(45deg);"></div>
+          <div class="n-link" style="width:111px; top:125px; left:25px; transform:rotate(63.4deg);"></div>
+          <div class="n-link" style="width:111px; top:125px; left:225px; transform:rotate(116.6deg);"></div>
+          <div class="n-link" style="width:100px; top:225px; left:75px; transform:rotate(0deg);"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="scrolly-section right" data-start="0.6" data-end="0.75">
+      <div class="companion-visual">
+        <div class="film-strip">
+          <div class="film-holes left"><div class="film-hole"></div><div class="film-hole"></div><div class="film-hole"></div><div class="film-hole"></div><div class="film-hole"></div></div>
+          <div class="film-content"><div class="film-scan"></div></div>
+          <div class="film-holes right"><div class="film-hole"></div><div class="film-hole"></div><div class="film-hole"></div><div class="film-hole"></div><div class="film-hole"></div></div>
+        </div>
+      </div>
+      <div class="glass-panel">
+        <span class="glass-tag">Creative Generation</span>
+        <h2 class="glass-title">Runway ML Integration.</h2>
+        <p class="glass-desc">
+          Beyond text, I layered Runway ML's Gen-2 for rapid video concept prototyping. We can now move from a text storyboard to an animated draft video in hours instead of weeks. AI-generated B-roll and motion graphics instantly cut post-production asset costs by 35%.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 5 -->
+    <section class="scrolly-section center" data-start="0.8" data-end="1.0">
+      <div class="glass-panel" style="max-width: 800px;">
+        <span class="glass-tag">The Transformation</span>
+        <h2 class="glass-title" style="font-size: 3.5rem;">Doing 3x the work, effortlessly.</h2>
+        <div class="metric-grid" style="margin-bottom: 2rem;">
+          <div class="metric-card"><div class="metric-value">1.5 Days</div><div class="metric-label">New Turnaround Time</div></div>
+          <div class="metric-card"><div class="metric-value">67%</div><div class="metric-label">Faster Delivery</div></div>
+          <div class="metric-card"><div class="metric-value">130+</div><div class="metric-label">Monthly Deliverables (Up from 45)</div></div>
+          <div class="metric-card"><div class="metric-value">3x</div><div class="metric-label">Volume Capacity</div></div>
+        </div>
+        <a href="index.html"><button class="final-cta">Back to Portfolio</button></a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

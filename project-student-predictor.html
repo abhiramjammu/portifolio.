@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Performance Predictor | Jaya Sai Abhiram</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/scrollytelling.css?v=16">
+  <script src="js/scrollytelling.js?v=16" defer></script>
+  <style>
+    /* ── Project-Specific Theme ── */
+
+    /* CSS-only animated gradient background (replaces external image) */
+    .fixed-bg .css-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(88, 28, 135, 0.6) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 75% 70%, rgba(30, 64, 175, 0.5) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(124, 58, 237, 0.3) 0%, transparent 60%),
+        radial-gradient(ellipse 90% 80% at 60% 20%, rgba(15, 23, 42, 0.9) 0%, transparent 80%),
+        linear-gradient(160deg, #0a0118 0%, #0f172a 35%, #1e1b4b 60%, #0c0a1a 100%);
+      animation: bgShift 20s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    @keyframes bgShift {
+      0%   { transform: scale(1) translate(0, 0); }
+      33%  { transform: scale(1.05) translate(-1%, 1%); }
+      66%  { transform: scale(1.02) translate(1%, -0.5%); }
+      100% { transform: scale(1.07) translate(-0.5%, 0.5%); }
+    }
+
+    /* Floating grid lines overlay */
+    .fixed-bg .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(192, 132, 252, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(192, 132, 252, 0.2) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridDrift 30s linear infinite;
+    }
+
+    @keyframes gridDrift {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(60px, 60px); }
+    }
+
+    /* Floating particles */
+    .fixed-bg .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0;
+      animation: particleFloat 8s ease-in-out infinite;
+      will-change: transform, opacity;
+    }
+    .particle:nth-child(3) { width: 4px; height: 4px; background: rgba(167, 139, 250, 0.5); top: 20%; left: 15%; animation-delay: 0s; }
+    .particle:nth-child(4) { width: 3px; height: 3px; background: rgba(96, 165, 250, 0.4); top: 60%; left: 80%; animation-delay: 2s; }
+    .particle:nth-child(5) { width: 5px; height: 5px; background: rgba(192, 132, 252, 0.3); top: 40%; left: 50%; animation-delay: 4s; }
+    .particle:nth-child(6) { width: 3px; height: 3px; background: rgba(59, 130, 246, 0.5); top: 75%; left: 30%; animation-delay: 6s; }
+    .particle:nth-child(7) { width: 4px; height: 4px; background: rgba(139, 92, 246, 0.4); top: 15%; left: 70%; animation-delay: 1s; }
+    .particle:nth-child(8) { width: 2px; height: 2px; background: rgba(167, 139, 250, 0.6); top: 85%; left: 55%; animation-delay: 3s; }
+    .particle:nth-child(9) { width: 6px; height: 6px; background: rgba(96, 165, 250, 0.2); top: 50%; left: 10%; animation-delay: 5s; }
+
+    @keyframes particleFloat {
+      0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
+      20%      { opacity: 1; }
+      80%      { opacity: 1; }
+      50%      { transform: translateY(-40px) scale(1); }
+    }
+
+    /* ── Intro Section Overrides ── */
+    .intro-text h1 {
+      background: linear-gradient(to bottom, #ffffff, rgba(167, 139, 250, 0.6)) !important;
+      -webkit-background-clip: text !important;
+      color: transparent !important;
+    }
+
+    /* ── Glass Panel Theme Overrides ── */
+    .glass-panel {
+      border-color: rgba(124, 58, 237, 0.15) !important;
+    }
+    .glass-panel::before {
+      background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent) !important;
+    }
+    .glass-tag {
+      color: rgba(167, 139, 250, 0.8) !important;
+    }
+    .glass-title {
+      background: linear-gradient(to bottom, #ffffff, rgba(167, 139, 250, 0.5)) !important;
+      -webkit-background-clip: text !important;
+      color: transparent !important;
+    }
+
+    /* ── Inline Visual: Metric Cards ── */
+    .metric-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .metric-card {
+      background: rgba(124, 58, 237, 0.08);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+      border-radius: 1rem;
+      padding: 1rem 1.25rem;
+      flex: 1;
+      min-width: 100px;
+      text-align: center;
+    }
+    .metric-card .metric-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a78bfa, #60a5fa);
+      -webkit-background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+    }
+    .metric-card .metric-label {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+    }
+
+    /* ── Inline Visual: Pipeline Diagram ── */
+    .pipeline {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .pipe-node {
+      background: rgba(124, 58, 237, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .pipe-arrow {
+      color: rgba(139, 92, 246, 0.4);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Inline Visual: Tech Tags ── */
+    .tech-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+    .tech-tag {
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 2rem;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.7rem;
+      color: rgba(167, 139, 250, 0.9);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Inline Visual: Feature List ── */
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.25rem 0 0 0;
+    }
+    .feature-list li {
+      position: relative;
+      padding: 0.4rem 0 0.4rem 1.5rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+    .feature-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.75rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
+    }
+
+    /* ── Inline Visual: Neural Network CSS ── */
+    .nn-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      padding: 1rem 0;
+    }
+    .nn-layer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .nn-node {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(139, 92, 246, 0.3);
+      border: 1.5px solid rgba(167, 139, 250, 0.5);
+      animation: nnPulse 2s ease-in-out infinite;
+    }
+    .nn-node:nth-child(odd) { animation-delay: 0.5s; }
+    .nn-node.active {
+      background: rgba(139, 92, 246, 0.6);
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+    }
+    .nn-connector {
+      width: 30px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(139, 92, 246, 0.3), rgba(59, 130, 246, 0.3));
+      position: relative;
+    }
+    .nn-connector::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 8px;
+      height: 3px;
+      background: rgba(167, 139, 250, 0.6);
+      border-radius: 2px;
+      animation: dataFlow 1.5s ease-in-out infinite;
+    }
+    @keyframes nnPulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50%      { transform: scale(1.15); opacity: 1; }
+    }
+    @keyframes dataFlow {
+      0%   { left: 0; opacity: 0; }
+      20%  { opacity: 1; }
+      80%  { opacity: 1; }
+      100% { left: 100%; opacity: 0; }
+    }
+
+    /* ── Impact Section Special ── */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .impact-card {
+      background: rgba(124, 58, 237, 0.06);
+      border: 1px solid rgba(139, 92, 246, 0.12);
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .impact-card .impact-num {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #c084fc, #60a5fa);
+      -webkit-background-clip: text;
+      color: transparent;
+      line-height: 1.1;
+    }
+    .impact-card .impact-desc {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 0.35rem;
+      line-height: 1.4;
+    }
+
+    /* ── Final CTA Override ── */
+    .final-cta {
+      background: linear-gradient(135deg, #7c3aed, #3b82f6) !important;
+    }
+    .final-cta:hover {
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4) !important;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .intro-text h1 { font-size: 2.8rem !important; }
+      .metric-row { gap: 0.6rem; }
+      .metric-card .metric-value { font-size: 1.3rem; }
+      .pipeline { gap: 0.25rem; }
+      .pipe-node { font-size: 0.6rem; padding: 0.35rem 0.5rem; }
+      .nn-visual { gap: 1rem; }
+      .impact-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+      .impact-card .impact-num { font-size: 1.5rem; }
+    }
+    /* Companion Visuals */
+    .student-grid { width: 250px; height: 250px; display: grid; grid-template-columns: repeat(10, 1fr); gap: 8px; }
+    .student-grid div { background: rgba(255,255,255,0.1); border-radius: 50%; aspect-ratio: 1; }
+    .student-grid div:nth-child(4n+1) { background: #f43f5e; box-shadow: 0 0 10px rgba(244,63,94,0.6); animation: pulseRisk 2s infinite alternate; }
+    @keyframes pulseRisk { 0% { opacity: 0.5; } 100% { opacity: 1; transform: scale(1.1); } }
+
+    .tree-node { width: 50px; height: 50px; border-radius: 50%; border: 2px solid rgba(168,85,247,0.5); display: flex; align-items: center; justify-content: center; background: rgba(168,85,247,0.1); color: white; position: relative; font-weight: bold; font-size: 1.2rem; }
+    .tree-level { display: flex; gap: 3rem; margin-top: 3rem; position: relative; }
+    .tree-level::before { content: ''; position: absolute; top: -3rem; width: 2px; height: 3rem; background: rgba(255,255,255,0.2); left: 50%; }
+
+    .pipe-box { padding: 1.5rem 2rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(192,132,252,0.5); border-radius: 12px; font-weight: bold; color: #e9d5ff; margin-bottom: 0.5rem; text-align: center; width: 200px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    .pipe-arrow { width: 2px; height: 40px; background: linear-gradient(to bottom, rgba(192,132,252,0.8), transparent); margin: 0 auto 0.5rem auto; position: relative; }
+  <!-- Ultra-Premium Vibrant Dark Theme Override -->
+  <style>
+    .gen-bg { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%) !important; animation: none !important; }
+    
+    /* Global Dark Mode Overrides */
+    body, h1, h2, h3, p, .scrolly-logo, .btn-back { color: #ffffff !important; text-shadow: 0 2px 10px rgba(0,0,0,0.3) !important; -webkit-text-fill-color: #ffffff !important; }
+    .glass-panel { background: rgba(30, 27, 75, 0.5) !important; border: 1px solid rgba(167, 139, 250, 0.5) !important; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3), inset 0 0 20px rgba(244, 114, 182, 0.1) !important; backdrop-filter: blur(16px) !important; }
+    .glass-title { color: #ffffff !important; background: none !important; -webkit-text-fill-color: #ffffff !important; }
+    .glass-desc { color: #e2e8f0 !important; font-weight: 500; }
+    .glass-tag { color: #67e8f9 !important; border-color: rgba(34, 211, 238, 0.4) !important; background: rgba(34, 211, 238, 0.15) !important; font-weight: 700; text-shadow: 0 0 10px rgba(34, 211, 238, 0.6) !important; }
+    .metric-card { background: rgba(49, 46, 129, 0.7) !important; border: 1px solid rgba(244, 114, 182, 0.5) !important; box-shadow: 0 4px 20px rgba(244, 114, 182, 0.2) !important; }
+    .metric-value { background: linear-gradient(90deg, #f472b6, #c084fc, #67e8f9) !important; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; }
+    .metric-label { color: #e2e8f0 !important; font-weight: 600; }
+    .data-tag { background: rgba(49, 46, 129, 0.7) !important; color: #e879f9 !important; border-color: rgba(192, 132, 252, 0.5) !important; }
+    .tech-tag { background: rgba(49, 46, 129, 0.7) !important; color: #f472b6 !important; border-color: rgba(244, 114, 182, 0.5) !important; }
+    .scrolly-header { border-bottom: 1px solid rgba(167, 139, 250, 0.3) !important; background: rgba(30, 27, 75, 0.85) !important; backdrop-filter: blur(12px) !important; }
+    
+    /* Neon Geometric Glowing Orbs */
+    .bg-floating-shape { position: absolute; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; filter: blur(60px); animation: floatShape 25s infinite linear; opacity: 0.8; mix-blend-mode: screen; }
+    .bg-shape-1 { width: 550px; height: 550px; top: -10%; left: -10%; background: radial-gradient(circle, rgba(167, 139, 250, 0.6) 0%, transparent 70%); }
+    .bg-shape-2 { width: 650px; height: 650px; bottom: -10%; right: -10%; background: radial-gradient(circle, rgba(244, 114, 182, 0.6) 0%, transparent 70%); border-radius: 50% 50% 30% 70% / 50% 50% 70% 70%; animation-direction: reverse; animation-delay: -12s; }
+    .bg-shape-3 { width: 450px; height: 450px; top: 30%; left: 40%; background: radial-gradient(circle, rgba(45, 212, 191, 0.5) 0%, transparent 70%); animation-duration: 35s; }
+    @keyframes floatShape { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.15); } 100% { transform: rotate(360deg) scale(1); } }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header class="scrolly-header">
+    <a href="index.html#projects" onclick="if(window.history.length > 1) { window.history.back(); return false; }" class="btn-back">← Back to Portfolio</a>
+    <span class="scrolly-logo">Student Performance Predictor</span>
+  </header>
+
+  <!-- Massive Scroll Container -->
+  <main class="scrolly-container">
+
+    <!-- Fixed Background: Pastel Geometry -->
+    <div class="fixed-bg">
+      <div class="gen-bg"></div>
+      <div class="bg-floating-shape bg-shape-1"></div>
+      <div class="bg-floating-shape bg-shape-2"></div>
+      <div class="bg-floating-shape bg-shape-3"></div>
+      <div class="bg-mask-layer"></div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════ -->
+    <!-- Section 1: Hero Intro (center)                -->
+    <!-- ══════════════════════════════════════════════ -->
+    <section class="scrolly-section center intro-text" data-start="0.0" data-end="0.15">
+      <h1>Student Performance<br>Predictor</h1>
+      <p>Forecasting academic outcomes with machine learning precision.</p>
+    </section>
+
+    <!-- ══════════════════════════════════════════════ -->
+    <!-- Section 2: The Problem (right)                -->
+    <!-- ══════════════════════════════════════════════    <!-- Section 2 -->
+    <section class="scrolly-section right" data-start="0.2" data-end="0.35">
+      <div class="companion-visual">
+        <div class="student-grid">
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+        </div>
+      </div>
+      <div class="glass-panel">
+        <span class="glass-tag">The Problem</span>
+        <h2 class="glass-title">Interventions were too late.</h2>
+        <p class="glass-desc">
+          Educational institutions struggled to identify at-risk students until grades had already slipped beyond recovery. Manual tracking of 2,000+ students across 15 academic parameters was unsustainable — counselors were overwhelmed, and data lived in disconnected spreadsheets.
+        </p>
+        <div class="metric-row">
+          <div class="metric-card">
+            <div class="metric-value">2,000+</div>
+            <div class="metric-label">Students Tracked</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">15</div>
+            <div class="metric-label">Parameters</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">30%</div>
+            <div class="metric-label">Late Interventions</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════ -->
+    <!-- Section 3: The Solution (left)                -->
+    <!-- ══════════════════════════════════════════════ -->
+    <section class="scrolly-section left" data-start="0.38" data-end="0.55">
+      <div class="glass-panel">
+        <span class="glass-tag">The Solution</span>
+        <h2 class="glass-title">Prediction at scale.</h2>
+        <p class="glass-desc">
+          I built a Random Forest classifier using Python and Scikit-learn, engineered 12 custom features from raw attendance, assignment, and exam data, and trained the model on 3 years of historical records — over 6,000 student entries. The result: an early warning system that flags students weeks before traditional methods.
+        </p>
+        <div class="nn-visual">
+          <div class="nn-layer">
+            <div class="nn-node active"></div>
+            <div class="nn-node"></div>
+            <div class="nn-node active"></div>
+            <div class="nn-node"></div>
+          </div>
+          <div class="nn-connector"></div>
+          <div class="nn-layer">
+            <div class="nn-node"></div>
+            <div class="nn-node active"></div>
+            <div class="nn-node"></div>
+          </div>
+          <div class="nn-connector"></div>
+          <div class="nn-layer">
+            <div class="nn-node active"></div>
+            <div class="nn-node"></div>
+            <div class="nn-node active"></div>
+          </div>
+          <div class="nn-connector"></div>
+          <div class="nn-layer">
+            <div class="nn-node"></div>
+            <div class="nn-node active"></div>
+          </div>
+        </div>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Scikit-learn</span>
+          <span class="tech-tag">Pandas</span>
+          <span class="tech-tag">Random Forest</span>
+        </div>
+      </div>
+      <div class="companion-visual">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div class="tree-node">Y</div>
+          <div class="tree-level">
+            <div class="tree-node">X₁</div>
+            <div class="tree-node">X₂</div>
+          </div>
+          <div class="tree-level" style="gap: 1rem; margin-top: 2rem;">
+            <div class="tree-node" style="width: 40px; height: 40px; background:#f43f5e; border-color:#f43f5e">0</div>
+            <div class="tree-node" style="width: 40px; height: 40px; background:#10b981; border-color:#10b981">1</div>
+            <div class="tree-node" style="width: 40px; height: 40px; background:#10b981; border-color:#10b981">1</div>
+            <div class="tree-node" style="width: 40px; height: 40px; background:#f43f5e; border-color:#f43f5e">0</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════ -->
+    <!-- Section 4: The Architecture (right)           -->
+    <!-- ══════════════════════════════════════════════    <!-- Section 4 -->
+    <section class="scrolly-section right" data-start="0.6" data-end="0.75">
+      <div class="companion-visual">
+        <div>
+          <div class="pipe-box">Raw SQL Data</div>
+          <div class="pipe-arrow"></div>
+          <div class="pipe-box" style="border-color: rgba(52,211,153,0.5); color: #a7f3d0">Scikit-learn Model</div>
+          <div class="pipe-arrow" style="background: linear-gradient(to bottom, rgba(52,211,153,0.8), transparent)"></div>
+          <div class="pipe-box" style="border-color: rgba(251,191,36,0.5); color: #fde68a">Power BI Dashboard</div>
+        </div>
+      </div>
+      <div class="glass-panel">
+        <span class="glass-tag">The Architecture</span>
+        <h2 class="glass-title">End-to-end pipeline.</h2>
+        <p class="glass-desc">
+          Data flowed from SQL extraction through Pandas cleaning, into custom feature engineering, model training, and finally Power BI visualization. I used 5-fold stratified cross-validation to ensure robust performance across class imbalances, and fine-tuned hyperparameters with GridSearchCV for optimal precision-recall balance.
+        </p>
+        <div class="pipeline">
+          <div class="pipe-node">SQL Extract</div>
+          <span class="pipe-arrow">→</span>
+          <div class="pipe-node">Pandas Clean</div>
+          <span class="pipe-arrow">→</span>
+          <div class="pipe-node">Feature Eng.</div>
+          <span class="pipe-arrow">→</span>
+          <div class="pipe-node">Model Train</div>
+          <span class="pipe-arrow">→</span>
+          <div class="pipe-node">Power BI</div>
+        </div>
+        <ul class="feature-list">
+          <li>5-fold stratified cross-validation</li>
+          <li>GridSearchCV hyperparameter tuning</li>
+          <li>12 engineered features from raw data</li>
+          <li>Automated weekly retraining pipeline</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════ -->
+    <!-- Section 5: The Impact (center)                -->
+    <!-- ══════════════════════════════════════════════ -->
+    <section class="scrolly-section center" data-start="0.8" data-end="1.0">
+      <div class="glass-panel" style="max-width: 640px;">
+        <span class="glass-tag">The Impact</span>
+        <h2 class="glass-title" style="font-size: 3.5rem;">Real results. Real change.</h2>
+        <p class="glass-desc" style="font-size: 1.15rem; margin-bottom: 0.5rem;">
+          The model didn't just predict — it transformed how departments make decisions. Adopted by 3 department heads for quarterly reviews, the dashboard became the single source of truth for student welfare.
+        </p>
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="impact-num">89.3%</div>
+            <div class="impact-desc">Prediction accuracy for at-risk identification</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-num">45%</div>
+            <div class="impact-desc">Reduction in late interventions</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-num">3</div>
+            <div class="impact-desc">Department heads adopted the dashboard</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-num">&lt;2s</div>
+            <div class="impact-desc">Full cohort analysis processing time</div>
+          </div>
+        </div>
+        <a href="index.html"><button class="final-cta">Back to Portfolio</button></a>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
