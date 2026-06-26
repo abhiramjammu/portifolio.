@@ -137,6 +137,19 @@ if (floatingRobot) {
         }
       });
       currentTarget = closestTarget;
+      
+      // Auto-reveal the timeline item when robot targets it
+      const tlItem = currentTarget.closest('.tl-item');
+      if (tlItem) {
+        tlItem.classList.add('revealed');
+      }
+
+      // If we completely scroll away from the experience section, fade out the websites
+      if (!currentTarget.closest('#experience')) {
+        document.querySelectorAll('.tl-item.revealed').forEach(item => {
+          item.classList.remove('revealed');
+        });
+      }
     }
     updateRobotPosition();
   };
@@ -302,3 +315,11 @@ if(roleText) {
   }
   setTimeout(typeEffect, 1000);
 }
+
+// ─── IRREVERSIBLE PORTFOLIO PREVIEW HOVER ───
+const tlItems = document.querySelectorAll('.tl-item');
+tlItems.forEach(item => {
+  item.addEventListener('mouseenter', () => {
+    item.classList.add('revealed');
+  });
+});

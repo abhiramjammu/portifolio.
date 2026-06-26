@@ -374,44 +374,123 @@ a { text-decoration: none; color: inherit; }
 
 /* Portfolio Preview on Hover */
 .portfolio-preview-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
   pointer-events: none;
   z-index: 10;
 }
-.stat-right.portfolio-preview-container {
-  transform: translateX(-30px);
+.tl-preview-right {
+  left: 100%;
+  justify-content: flex-start;
+  padding-left: 40px;
 }
-.stat-left.portfolio-preview-container {
-  transform: translateX(30px);
+.tl-preview-left {
+  right: 100%;
+  justify-content: flex-end;
+  padding-right: 40px;
 }
 
 .tl-item:hover .portfolio-preview-container {
   opacity: 1;
   visibility: visible;
-  transform: translateX(0);
 }
 
+/* Premium MacBook-style Preview Container */
 .iframe-wrapper {
   position: relative;
-  width: 360px;
-  height: 240px;
-  border-radius: 12px;
+  width: 288px;
+  height: 180px; /* Thumbnail size */
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 20px rgba(139, 92, 246, 0.4);
-  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255,255,255,0.05);
+  background: #0f172a;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  display: block;
+  pointer-events: auto;
 }
 
-.portfolio-iframe {
+/* MacOS style browser dots (Always visible) */
+.iframe-wrapper::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 800px;
-  height: 533.33px;
+  width: 100%;
+  height: 24px;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 10;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 14px 12px, #ff5f56 3px, transparent 4px),
+    radial-gradient(circle at 26px 12px, #ffbd2e 3px, transparent 4px),
+    radial-gradient(circle at 38px 12px, #27c93f 3px, transparent 4px);
+  background-repeat: no-repeat;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover expansion */
+.tl-item:hover .iframe-wrapper {
+  width: 400px;
+  height: 250px; /* The size the user loved */
+  border-radius: 12px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.15), 0 0 40px rgba(99, 102, 241, 0.15);
+  transform: translateY(-8px);
+}
+
+.tl-item.revealed .iframe-wrapper::after {
+  content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shineScan 3s infinite linear;
+  pointer-events: none;
+  z-index: 5;
+}
+@keyframes shineScan {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* The actual iframe */
+.portfolio-iframe {
+  position: absolute;
+  top: 24px; /* Sits perfectly below the macOS bar */
+  width: 1440px;
+  height: 900px; /* Standard desktop viewport */
   border: none;
-  transform: scale(0.45);
-  transform-origin: 0 0;
+  margin: 0;
+  pointer-events: none; /* Let clicks pass to wrapper */
+  /* Animate transform for butter-smooth GPU acceleration */
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* Creative Production Lead Portfolio - Workflow (Right Panel) */
+.iframe-workflow {
+  left: 0;
+  transform-origin: 0 0; /* Anchor left edge */
+  transform: scale(0.2); /* 288 / 1440 = 0.2 */
+}
+.tl-item:hover .iframe-workflow {
+  transform: scale(0.2777); /* 400 / 1440 = 0.2777 */
+}
+
+/* Performance Marketing Portfolio - Freelance (Left Panel) */
+.iframe-freelance {
+  right: 0;
+  left: auto;
+  transform-origin: 100% 0; /* Anchor right edge */
+  transform: scale(0.2);
+}
+.tl-item:hover .iframe-freelance {
+  transform: scale(0.2777);
 }
 
 
