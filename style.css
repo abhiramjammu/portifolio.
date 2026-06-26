@@ -372,6 +372,47 @@ a { text-decoration: none; color: inherit; }
 .stat-right { right: 0; justify-content: flex-start; }
 .stat-left { left: 0; justify-content: flex-end; }
 
+/* Portfolio Preview on Hover */
+.portfolio-preview-container {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+.stat-right.portfolio-preview-container {
+  transform: translateX(-30px);
+}
+.stat-left.portfolio-preview-container {
+  transform: translateX(30px);
+}
+
+.tl-item:hover .portfolio-preview-container {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.iframe-wrapper {
+  position: relative;
+  width: 360px;
+  height: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 20px rgba(139, 92, 246, 0.4);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.portfolio-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 533.33px;
+  border: none;
+  transform: scale(0.45);
+  transform-origin: 0 0;
+}
 
 
 .tl-card {
