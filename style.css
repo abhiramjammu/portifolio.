@@ -645,18 +645,87 @@ a { text-decoration: none; color: inherit; }
 .orbit-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform-style: preserve-3d; }
 .orbit-item { position: absolute; top: 50%; left: 50%; display: flex; justify-content: center; align-items: center; transition: all 0.3s; }
 .glass-orb { 
-  background: rgba(10, 15, 30, 0.6); backdrop-filter: blur(8px); 
-  border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; 
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3), inset 0 0 15px rgba(59, 130, 246, 0.4);
-  color: white; font-size: 1.5rem; 
+  background: rgba(10, 15, 30, 0.8); backdrop-filter: blur(12px); 
+  border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; 
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,255,255,0.1);
+  color: #e2e8f0; font-size: 0.95rem; font-weight: 600;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  transition: all 0.4s ease;
 }
 .glass-orb:hover { 
-  background: rgba(59, 130, 246, 0.2); border-color: var(--accent-primary); 
-  box-shadow: 0 0 25px var(--accent-primary); color: var(--accent-primary); 
+  transform: scale(1.1);
+  z-index: 20;
 }
 
-.ring-1 .orbit-item.glass-orb { animation: orbit1 40s linear infinite; width: 60px; height: 60px; margin: -30px 0 0 -30px; }
-.ring-2 .orbit-item.glass-orb { animation: orbit2 60s linear infinite reverse; width: 80px; height: 80px; margin: -40px 0 0 -40px; font-size: 2rem; }
+/* Remove fixed width/height so the text can breathe */
+.ring-1 .orbit-item.glass-orb { animation: orbit1 40s linear infinite; margin-top: -20px; margin-left: -40px; }
+.ring-2 .orbit-item.glass-orb { animation: orbit2 60s linear infinite reverse; margin-top: -20px; margin-left: -50px; font-size: 1.05rem; }
+
+/* DYNAMIC CATEGORY COLORS */
+.skills-split {
+  --col-genai: #fbbf24;    /* Yellow */
+  --col-data: #f97316;     /* Orange */
+  --col-creative: #10b981; /* Green */
+  --col-marketing: #ec4899;/* Pink */
+  --col-logic: #06b6d4;    /* Cyan */
+}
+
+/* Base glowing effect mixin for Bento Tags */
+.bento-card[data-category="genai"]:hover .bento-tags span { border-color: var(--col-genai); color: #fff; background: rgba(251, 191, 36, 0.15); box-shadow: 0 0 15px rgba(251, 191, 36, 0.3); }
+.bento-card[data-category="data"]:hover .bento-tags span { border-color: var(--col-data); color: #fff; background: rgba(249, 115, 22, 0.15); box-shadow: 0 0 15px rgba(249, 115, 22, 0.3); }
+.bento-card[data-category="creative"]:hover .bento-tags span { border-color: var(--col-creative); color: #fff; background: rgba(16, 185, 129, 0.15); box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
+.bento-card[data-category="marketing"]:hover .bento-tags span { border-color: var(--col-marketing); color: #fff; background: rgba(236, 72, 153, 0.15); box-shadow: 0 0 15px rgba(236, 72, 153, 0.3); }
+.bento-card[data-category="logic"]:hover .bento-tags span { border-color: var(--col-logic); color: #fff; background: rgba(6, 182, 212, 0.15); box-shadow: 0 0 15px rgba(6, 182, 212, 0.3); }
+
+/* Glow effects for Orbit Items when interacting with Bento Cards (Requires :has support) */
+.skills-split:has(.bento-card[data-category="genai"]:hover) .orbit-item[data-category="genai"],
+.skills-split:has(.orbit-item[data-category="genai"]:hover) .orbit-item[data-category="genai"] {
+  border-color: var(--col-genai); color: #fff; background: rgba(251, 191, 36, 0.2); box-shadow: 0 0 25px var(--col-genai); text-shadow: 0 0 8px var(--col-genai); z-index: 10;
+}
+.skills-split:has(.bento-card[data-category="data"]:hover) .orbit-item[data-category="data"],
+.skills-split:has(.orbit-item[data-category="data"]:hover) .orbit-item[data-category="data"] {
+  border-color: var(--col-data); color: #fff; background: rgba(249, 115, 22, 0.2); box-shadow: 0 0 25px var(--col-data); text-shadow: 0 0 8px var(--col-data); z-index: 10;
+}
+.skills-split:has(.bento-card[data-category="creative"]:hover) .orbit-item[data-category="creative"],
+.skills-split:has(.orbit-item[data-category="creative"]:hover) .orbit-item[data-category="creative"] {
+  border-color: var(--col-creative); color: #fff; background: rgba(16, 185, 129, 0.2); box-shadow: 0 0 25px var(--col-creative); text-shadow: 0 0 8px var(--col-creative); z-index: 10;
+}
+.skills-split:has(.bento-card[data-category="marketing"]:hover) .orbit-item[data-category="marketing"],
+.skills-split:has(.orbit-item[data-category="marketing"]:hover) .orbit-item[data-category="marketing"] {
+  border-color: var(--col-marketing); color: #fff; background: rgba(236, 72, 153, 0.2); box-shadow: 0 0 25px var(--col-marketing); text-shadow: 0 0 8px var(--col-marketing); z-index: 10;
+}
+.skills-split:has(.bento-card[data-category="logic"]:hover) .orbit-item[data-category="logic"],
+.skills-split:has(.orbit-item[data-category="logic"]:hover) .orbit-item[data-category="logic"] {
+  border-color: var(--col-logic); color: #fff; background: rgba(6, 182, 212, 0.2); box-shadow: 0 0 25px var(--col-logic); text-shadow: 0 0 8px var(--col-logic); z-index: 10;
+}
+
+/* Dim out unrelated orbit items when a bento card is hovered */
+.skills-split:has(.bento-card:hover) .orbit-item:not(:hover) {
+  opacity: 0.3;
+}
+/* Ensure the matching category items stay fully opaque */
+.skills-split:has(.bento-card[data-category="genai"]:hover) .orbit-item[data-category="genai"],
+.skills-split:has(.bento-card[data-category="data"]:hover) .orbit-item[data-category="data"],
+.skills-split:has(.bento-card[data-category="creative"]:hover) .orbit-item[data-category="creative"],
+.skills-split:has(.bento-card[data-category="marketing"]:hover) .orbit-item[data-category="marketing"],
+.skills-split:has(.bento-card[data-category="logic"]:hover) .orbit-item[data-category="logic"] {
+  opacity: 1;
+}
+
+/* Cross-highlight: Hovering an orbit item highlights its bento card */
+.skills-split:has(.orbit-item[data-category="genai"]:hover) .bento-card[data-category="genai"] { transform: translateZ(20px) translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.3), inset 0 0 0 1px var(--col-genai), 0 0 30px rgba(251, 191, 36, 0.2); }
+.skills-split:has(.orbit-item[data-category="data"]:hover) .bento-card[data-category="data"] { transform: translateZ(20px) translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.3), inset 0 0 0 1px var(--col-data), 0 0 30px rgba(249, 115, 22, 0.2); }
+.skills-split:has(.orbit-item[data-category="creative"]:hover) .bento-card[data-category="creative"] { transform: translateZ(20px) translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.3), inset 0 0 0 1px var(--col-creative), 0 0 30px rgba(16, 185, 129, 0.2); }
+.skills-split:has(.orbit-item[data-category="marketing"]:hover) .bento-card[data-category="marketing"] { transform: translateZ(20px) translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.3), inset 0 0 0 1px var(--col-marketing), 0 0 30px rgba(236, 72, 153, 0.2); }
+.skills-split:has(.orbit-item[data-category="logic"]:hover) .bento-card[data-category="logic"] { transform: translateZ(20px) translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.3), inset 0 0 0 1px var(--col-logic), 0 0 30px rgba(6, 182, 212, 0.2); }
+
+/* Dynamically color the h3 when hovered */
+.bento-card[data-category="genai"]:hover h3, .skills-split:has(.orbit-item[data-category="genai"]:hover) .bento-card[data-category="genai"] h3 { color: var(--col-genai); }
+.bento-card[data-category="data"]:hover h3, .skills-split:has(.orbit-item[data-category="data"]:hover) .bento-card[data-category="data"] h3 { color: var(--col-data); }
+.bento-card[data-category="creative"]:hover h3, .skills-split:has(.orbit-item[data-category="creative"]:hover) .bento-card[data-category="creative"] h3 { color: var(--col-creative); }
+.bento-card[data-category="marketing"]:hover h3, .skills-split:has(.orbit-item[data-category="marketing"]:hover) .bento-card[data-category="marketing"] h3 { color: var(--col-marketing); }
+.bento-card[data-category="logic"]:hover h3, .skills-split:has(.orbit-item[data-category="logic"]:hover) .bento-card[data-category="logic"] h3 { color: var(--col-logic); }
 
 /* The magic math for upright isometric orbiting elements */
 @keyframes orbit1 {
