@@ -84,6 +84,38 @@
     .lock-inner { position: absolute; font-size: 3rem; animation: none; transform: rotate(0); text-shadow: 0 0 20px #34d399; }
     @keyframes spinDashed { 100% { transform: rotate(360deg); } }
   </style>
+
+  <style>
+    .white-panel {
+      background: rgba(255, 255, 255, 0.95) !important;
+      color: #0f172a !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2) !important;
+    }
+    .white-panel .glass-title {
+      color: #0f172a !important;
+      text-shadow: none !important;
+    }
+    .white-panel .glass-tag {
+      color: #3b82f6 !important;
+      border-color: rgba(59, 130, 246, 0.3) !important;
+      background: rgba(59, 130, 246, 0.1) !important;
+    }
+    .white-panel p {
+      color: #334155 !important;
+    }
+    .white-panel .metric-card {
+      background: rgba(241, 245, 249, 0.8) !important;
+      border-color: rgba(0,0,0,0.05) !important;
+    }
+    .white-panel .metric-value {
+      color: #0f172a !important;
+      text-shadow: none !important;
+    }
+    .white-panel .metric-label {
+      color: #64748b !important;
+    }
+  </style>
 </head>
 <body>
   <header class="scrolly-header">
@@ -98,14 +130,14 @@
     </div>
 
     <!-- Section 1 -->
-    <section class="scrolly-section center intro-text" data-start="0.0" data-end="0.15">
+    <section class="scrolly-section center intro-text" data-start="0.0" data-end="0.2">
       <h1>Sales Analytics Dashboard</h1>
       <p>Transforming raw regional data into strategic decisions.</p>
     </section>
 
     <!-- Section 2 -->
-    <section class="scrolly-section left" data-start="0.2" data-end="0.35">
-      <div class="glass-panel">
+    <section class="scrolly-section left" data-start="0.2" data-end="0.4">
+      <div class="glass-panel white-panel">
         <span class="glass-tag">The Challenge</span>
         <h2 class="glass-title">Buried in spreadsheets.</h2>
         <p class="glass-desc">
@@ -127,7 +159,7 @@
     </section>
 
     <!-- Section 3 -->
-    <section class="scrolly-section right" data-start="0.4" data-end="0.55">
+    <section class="scrolly-section right" data-start="0.4" data-end="0.6">
       <div class="companion-visual">
         <div class="glow-card">
           <div style="font-size:14px; color:#a7f3d0; text-transform:uppercase; font-weight:bold; letter-spacing:1px; margin-bottom:10px;">Regional Revenue</div>
@@ -137,7 +169,7 @@
           </div>
         </div>
       </div>
-      <div class="glass-panel">
+      <div class="glass-panel white-panel">
         <span class="glass-tag">The Architecture</span>
         <h2 class="glass-title">Powered by DAX & SQL.</h2>
         <p class="glass-desc">
@@ -153,8 +185,8 @@
     </section>
 
     <!-- Section 4 -->
-    <section class="scrolly-section left" data-start="0.6" data-end="0.75">
-      <div class="glass-panel">
+    <section class="scrolly-section left" data-start="0.6" data-end="0.8">
+      <div class="glass-panel white-panel">
         <span class="glass-tag">User Experience</span>
         <h2 class="glass-title">Interactive & Secure slicing.</h2>
         <p class="glass-desc">
@@ -172,7 +204,7 @@
 
     <!-- Section 5 -->
     <section class="scrolly-section center" data-start="0.8" data-end="1.0">
-      <div class="glass-panel" style="max-width: 800px;">
+      <div class="glass-panel white-panel" style="max-width: 800px;">
         <span class="glass-tag">The Impact</span>
         <h2 class="glass-title" style="font-size: 3.5rem;">Clarity at scale.</h2>
         <div class="metric-grid" style="margin-bottom: 2rem;">

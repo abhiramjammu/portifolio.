@@ -335,6 +335,38 @@
     .bg-shape-3 { width: 450px; height: 450px; top: 30%; left: 40%; background: radial-gradient(circle, rgba(45, 212, 191, 0.5) 0%, transparent 70%); animation-duration: 35s; }
     @keyframes floatShape { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.15); } 100% { transform: rotate(360deg) scale(1); } }
   </style>
+
+  <style>
+    .white-panel {
+      background: rgba(255, 255, 255, 0.95) !important;
+      color: #0f172a !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2) !important;
+    }
+    .white-panel .glass-title {
+      color: #0f172a !important;
+      text-shadow: none !important;
+    }
+    .white-panel .glass-tag {
+      color: #3b82f6 !important;
+      border-color: rgba(59, 130, 246, 0.3) !important;
+      background: rgba(59, 130, 246, 0.1) !important;
+    }
+    .white-panel p {
+      color: #334155 !important;
+    }
+    .white-panel .metric-card {
+      background: rgba(241, 245, 249, 0.8) !important;
+      border-color: rgba(0,0,0,0.05) !important;
+    }
+    .white-panel .metric-value {
+      color: #0f172a !important;
+      text-shadow: none !important;
+    }
+    .white-panel .metric-label {
+      color: #64748b !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -359,7 +391,7 @@
     <!-- ══════════════════════════════════════════════ -->
     <!-- Section 1: Hero Intro (center)                -->
     <!-- ══════════════════════════════════════════════ -->
-    <section class="scrolly-section center intro-text" data-start="0.0" data-end="0.15">
+    <section class="scrolly-section center intro-text" data-start="0.0" data-end="0.2">
       <h1>Student Performance<br>Predictor</h1>
       <p>Forecasting academic outcomes with machine learning precision.</p>
     </section>
@@ -367,7 +399,7 @@
     <!-- ══════════════════════════════════════════════ -->
     <!-- Section 2: The Problem (right)                -->
     <!-- ══════════════════════════════════════════════    <!-- Section 2 -->
-    <section class="scrolly-section right" data-start="0.2" data-end="0.35">
+    <section class="scrolly-section right" data-start="0.2" data-end="0.4">
       <div class="companion-visual">
         <div class="student-grid">
           <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
@@ -382,7 +414,7 @@
           <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
         </div>
       </div>
-      <div class="glass-panel">
+      <div class="glass-panel white-panel">
         <span class="glass-tag">The Problem</span>
         <h2 class="glass-title">Interventions were too late.</h2>
         <p class="glass-desc">
@@ -409,7 +441,7 @@
     <!-- Section 3: The Solution (left)                -->
     <!-- ══════════════════════════════════════════════ -->
     <section class="scrolly-section left" data-start="0.38" data-end="0.55">
-      <div class="glass-panel">
+      <div class="glass-panel white-panel">
         <span class="glass-tag">The Solution</span>
         <h2 class="glass-title">Prediction at scale.</h2>
         <p class="glass-desc">
@@ -467,7 +499,7 @@
     <!-- ══════════════════════════════════════════════ -->
     <!-- Section 4: The Architecture (right)           -->
     <!-- ══════════════════════════════════════════════    <!-- Section 4 -->
-    <section class="scrolly-section right" data-start="0.6" data-end="0.75">
+    <section class="scrolly-section right" data-start="0.6" data-end="0.8">
       <div class="companion-visual">
         <div>
           <div class="pipe-box">Raw SQL Data</div>
@@ -477,7 +509,7 @@
           <div class="pipe-box" style="border-color: rgba(251,191,36,0.5); color: #fde68a">Power BI Dashboard</div>
         </div>
       </div>
-      <div class="glass-panel">
+      <div class="glass-panel white-panel">
         <span class="glass-tag">The Architecture</span>
         <h2 class="glass-title">End-to-end pipeline.</h2>
         <p class="glass-desc">
@@ -507,7 +539,7 @@
     <!-- Section 5: The Impact (center)                -->
     <!-- ══════════════════════════════════════════════ -->
     <section class="scrolly-section center" data-start="0.8" data-end="1.0">
-      <div class="glass-panel" style="max-width: 640px;">
+      <div class="glass-panel white-panel" style="max-width: 640px;">
         <span class="glass-tag">The Impact</span>
         <h2 class="glass-title" style="font-size: 3.5rem;">Real results. Real change.</h2>
         <p class="glass-desc" style="font-size: 1.15rem; margin-bottom: 0.5rem;">

@@ -323,3 +323,5 @@ tlItems.forEach(item => {
     item.classList.add('revealed');
   });
 });
+
+window.addEventListener('load', () => { setTimeout(() => { document.documentElement.style.scrollBehavior = 'smooth'; }, 100); });

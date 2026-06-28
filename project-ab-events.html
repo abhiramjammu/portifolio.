@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AB Events | Project Showcase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Outfit', sans-serif; background: #1a050f; color: #f8fafc; margin: 0; overflow-x: hidden; position: relative; }
+    
+    #bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; background: #1a050f; pointer-events: none; }
+    
+    .showcase-nav { padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 100; background: rgba(15,23,42,0.5); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .btn-back { color: #94a3b8; text-decoration: none; display: flex; align-items: center; gap: 8px; font-weight: 500; transition: color 0.3s; }
+    .btn-back:hover { color: #3b82f6; }
+    .logo-brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; }
+    
+    .hero-split { display: flex; align-items: center; min-height: 100vh; padding: 6rem 5% 2rem; gap: 4rem; max-width: 1400px; margin: 0 auto; box-sizing: border-box; }
+    .hero-left { flex: 1.2; position: relative; perspective: 1200px; margin-bottom: 100px;}
+    .hero-right { flex: 0.8; }
+    
+    /* Fixed True Laptop Redesign */
+    .macbook-wrapper { position: relative; perspective: 1500px; transform-style: preserve-3d; }
+    .macbook-frame { position: relative; background: #94a3b8; padding: 3% 3% 4%; border-radius: 24px 24px 0 0; box-shadow: inset 0 2px 5px rgba(255,255,255,0.4), inset 0 -2px 10px rgba(0,0,0,0.2), 0 30px 60px rgba(0,0,0,0.5); transform: rotateY(15deg) rotateX(5deg) translateZ(0); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); transform-style: preserve-3d; transform-origin: bottom center; z-index: 2; }
+    
+    /* Iframe Scaling Magic (JS Assisted) */
+    .mac-screen { background: #0f172a; border-radius: 12px; overflow: hidden; aspect-ratio: 16/10; position: relative; border: 6px solid #020617; }
+    .mac-screen iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: none; background: #fff; transform-origin: top left; }
+    
+    .mac-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 15%; height: 12px; background: #020617; border-radius: 0 0 8px 8px; z-index: 10; }
+    
+    /* Keyboard Deck correctly stacked outside frame */
+    .mac-keyboard-deck { position: absolute; top: 100%; left: 0%; width: 100%; height: 180px; background: linear-gradient(to bottom, #cbd5e1, #94a3b8); border-radius: 4px 4px 20px 20px; transform-origin: top center; transform: rotateY(15deg) rotateX(80deg) translateZ(0); transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 40px 50px rgba(0,0,0,0.6), inset 0 2px 3px rgba(255,255,255,0.5); z-index: 1; }
+    
+    .macbook-wrapper:hover .macbook-frame { transform: rotateY(0deg) rotateX(0deg) translateZ(0); }
+    .macbook-wrapper:hover .mac-keyboard-deck { transform: rotateY(0deg) rotateX(88deg) translateZ(0); }
+    
+    .mac-trackpad { position: absolute; bottom: 12%; left: 50%; transform: translateX(-50%); width: 30%; height: 25%; background: #94a3b8; border-radius: 8px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1), 0 1px 1px rgba(255,255,255,0.5); }
+    .mac-keyboard { position: absolute; top: 15%; left: 10%; width: 80%; height: 40%; background: #1e293b; border-radius: 6px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5); }
+    
+    .p-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 4vw, 3.8rem); line-height: 1.1; margin-bottom: 1rem; background: linear-gradient(135deg, #fff, #94a3b8); -webkit-background-clip: text; color: transparent; }
+    .p-desc { font-size: 1.1rem; color: #94a3b8; margin-bottom: 2.5rem; line-height: 1.6; }
+    .btn-launch { display: inline-flex; align-items: center; gap: 10px; padding: 1rem 2.5rem; background: #3b82f6; color: white; border-radius: 30px; font-weight: 600; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 10px 20px rgba(59,130,246,0.3); }
+    .btn-launch:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(59,130,246,0.4); }
+    
+    .bento-section { padding: 2rem 5% 6rem; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; position: relative; z-index: 5; }
+    .bento-box { background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; padding: 2.5rem; backdrop-filter: blur(12px); transition: transform 0.3s, border-color 0.3s; }
+    .bento-box:hover { transform: translateY(-5px); border-color: rgba(59,130,246,0.3); }
+    .b-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: #e2e8f0; }
+    .b-content { color: #94a3b8; line-height: 1.7; font-size: 1.05rem; }
+    
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.5rem; }
+    .tech-badge { padding: 0.5rem 1rem; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 20px; color: #60a5fa; font-size: 0.9rem; font-weight: 600; }
+    
+    @media (max-width: 992px) {
+      .hero-split { flex-direction: column; text-align: center; margin-top: 50px; padding-top: 4rem; }
+      .bento-section { grid-template-columns: 1fr; }
+      .macbook-frame { transform: rotateY(0deg) rotateX(0deg); }
+      .mac-keyboard-deck { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  
+  <canvas id="bg-canvas"></canvas>
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; });
+    
+    const hubs = Array.from({length: 8}, () => ({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 20 + 10 }));
+    let mouse = {x: width/2, y: height/2};
+    window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+    
+    let streams = [];
+    
+    function draw() {
+      ctx.fillStyle = 'rgba(26, 5, 15, 0.2)'; // Very Dark Pink Trail
+      ctx.fillRect(0, 0, width, height);
+      
+      // Draw Hubs
+      hubs.forEach(h => {
+        ctx.beginPath(); ctx.arc(h.x, h.y, h.r, 0, Math.PI*2); 
+        ctx.fillStyle = 'rgba(244, 114, 182, 0.1)'; ctx.fill();
+        ctx.strokeStyle = 'rgba(244, 114, 182, 0.4)'; ctx.stroke();
+        
+        // Occasionally emit a stream to mouse
+        if(Math.random() > 0.95) {
+          streams.push({ x: h.x, y: h.y, targetX: mouse.x, targetY: mouse.y, progress: 0, speed: Math.random() * 0.003 + 0.002 });
+        }
+      });
+      
+      // Draw Streams
+      for(let i=0; i<streams.length; i++) {
+        let s = streams[i];
+        s.progress += s.speed;
+        let currX = s.x + (s.targetX - s.x) * s.progress;
+        let currY = s.y + (s.targetY - s.y) * s.progress;
+        
+        ctx.beginPath(); ctx.arc(currX, currY, 2, 0, Math.PI*2);
+        // Reduced Opacity for the shooting stream
+        ctx.fillStyle = 'rgba(244, 114, 182, 0.4)'; ctx.fill();
+        
+        if(s.progress >= 1) { streams.splice(i, 1); i--; }
+      }
+      
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+
+
+  <nav class="showcase-nav">
+    <a href="index.html#projects" class="btn-back">← Back to Portfolio</a>
+    <div class="logo-brand">JAYA SAI ABHIRAM</div>
+  </nav>
+
+  <section class="hero-split">
+    <div class="hero-left">
+      <div class="macbook-wrapper">
+        <div class="macbook-frame">
+          <div class="mac-notch"></div>
+          <div class="mac-screen">
+            <iframe src="https://abhiramjammu.github.io/ABevents/" title="AB Events"></iframe>
+          </div>
+        </div>
+        <div class="macbook-frame-bottom"></div>
+        <div class="mac-keyboard-deck">
+          <div class="mac-keyboard"></div>
+          <div class="mac-trackpad"></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <h1 class="p-title">AB Events</h1>
+      <p class="p-desc">A sleek, modern event management and booking system designed for seamless browsing and ticket processing.</p>
+      <a href="https://abhiramjammu.github.io/ABevents/" target="_blank" class="btn-launch">Launch Full Site ↗</a>
+    </div>
+  </section>
+
+  <section class="bento-section">
+    <div class="bento-box">
+      <h2 class="b-title">What We Built</h2>
+      <div class="b-content">
+        <p>This project represents a deep dive into scalable frontend architectures and responsive design patterns. The goal was to build a fluid, high-performance interface that feels native in the browser.</p>
+        <p style="margin-top: 1rem;">By carefully managing state, rendering cycles, and component lifecycles, this application remains performant even under heavy visual or data loads.</p>
+      </div>
+    </div>
+    <div class="bento-box">
+      <h2 class="b-title">Technologies Used</h2>
+      <div class="b-content">
+        <p>A performant stack for modern web development.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">Next.js</span><span class="tech-badge">Prisma</span><span class="tech-badge">PostgreSQL</span><span class="tech-badge">Stripe</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const screen = document.querySelector('.mac-screen');
+      const iframe = screen.querySelector('iframe');
+      if(screen && iframe) {
+        const resizeIframe = () => {
+          const scaleX = screen.clientWidth / 1440;
+          const scaleY = screen.clientHeight / 900;
+          iframe.style.transform = `scale(${scaleX}, ${scaleY})`;
+        };
+        window.addEventListener('resize', resizeIframe);
+        resizeIframe();
+        
+        
+      }
+    });
+  </script>
+</body>
+</html>
