@@ -348,9 +348,10 @@
     .white-panel h3 {
       color: #0f172a !important;
       text-shadow: none !important;
-      background: none !important;
+      background: transparent !important;
       -webkit-text-fill-color: #0f172a !important;
-      -webkit-background-clip: unset !important;
+      -webkit-background-clip: border-box !important;
+      background-clip: border-box !important;
     }
     .white-panel .glass-tag {
       color: #3b82f6 !important;
@@ -363,6 +364,7 @@
     .white-panel .highlight-text {
       color: #334155 !important;
       text-shadow: none !important;
+      -webkit-text-fill-color: #334155 !important;
     }
     /* Original Sales/Student Metrics */
     .white-panel .metric-card {
@@ -373,10 +375,12 @@
     .white-panel .number {
       color: #0f172a !important;
       text-shadow: none !important;
+      -webkit-text-fill-color: #0f172a !important;
     }
     .white-panel .metric-label, 
     .white-panel .label {
       color: #64748b !important;
+      -webkit-text-fill-color: #64748b !important;
     }
     /* AI Automation specific */
     .white-panel .metrics-grid .metric {
