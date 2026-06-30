@@ -343,28 +343,49 @@
       border: 1px solid rgba(0, 0, 0, 0.1) !important;
       box-shadow: 0 10px 40px rgba(0,0,0,0.2) !important;
     }
-    .white-panel .glass-title {
+    .white-panel .glass-title, 
+    .white-panel h2, 
+    .white-panel h3 {
       color: #0f172a !important;
       text-shadow: none !important;
+      background: none !important;
+      -webkit-text-fill-color: #0f172a !important;
+      -webkit-background-clip: unset !important;
     }
     .white-panel .glass-tag {
       color: #3b82f6 !important;
       border-color: rgba(59, 130, 246, 0.3) !important;
       background: rgba(59, 130, 246, 0.1) !important;
     }
-    .white-panel p {
+    .white-panel p, 
+    .white-panel .glass-desc, 
+    .white-panel li, 
+    .white-panel .highlight-text {
       color: #334155 !important;
+      text-shadow: none !important;
     }
+    /* Original Sales/Student Metrics */
     .white-panel .metric-card {
       background: rgba(241, 245, 249, 0.8) !important;
       border-color: rgba(0,0,0,0.05) !important;
     }
-    .white-panel .metric-value {
+    .white-panel .metric-value, 
+    .white-panel .number {
       color: #0f172a !important;
       text-shadow: none !important;
     }
-    .white-panel .metric-label {
+    .white-panel .metric-label, 
+    .white-panel .label {
       color: #64748b !important;
+    }
+    /* AI Automation specific */
+    .white-panel .metrics-grid .metric {
+      background: rgba(241, 245, 249, 0.8) !important;
+      border: 1px solid rgba(0,0,0,0.05) !important;
+    }
+    .white-panel .stats-row .stat-item {
+      background: rgba(241, 245, 249, 0.8) !important;
+      border: 1px solid rgba(0,0,0,0.05) !important;
     }
   </style>
 </head>
