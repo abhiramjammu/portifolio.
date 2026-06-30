@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  /* Base styles */
+  .glass-panel { background: rgba(30, 27, 75, 0.5) !important; }
+  .glass-desc { color: #e2e8f0 !important; font-weight: 500; }
+  p { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
+  .metric-value { background: linear-gradient(90deg, #f472b6, #c084fc, #67e8f9) !important; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; }
+</style>
+<style>
+  /* My Override */
+  .white-panel { background: rgba(255, 255, 255, 0.95) !important; color: #0f172a !important; }
+  .white-panel p, 
+  .white-panel .glass-desc {
+    color: #334155 !important;
+    text-shadow: none !important;
+    -webkit-text-fill-color: #334155 !important;
+  }
+  .white-panel .metric-value {
+    color: #0f172a !important;
+    text-shadow: none !important;
+    -webkit-text-fill-color: #0f172a !important;
+  }
+</style>
+</head>
+<body>
+  <div class="glass-panel white-panel">
+    <p class="glass-desc">Test Description. If this is dark, CSS works.</p>
+    <div class="metric-value">2,000+</div>
+  </div>
+</body>
+</html>
