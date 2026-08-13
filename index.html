@@ -1,287 +1,272 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jaya Sai Abhiram Jammu — Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=55" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jaya Sai Abhiram Jammu — Portfolio</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;600;700;900&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css?v=55" rel="stylesheet"/>
 </head>
 <body>
-
 <!-- Custom Cursor -->
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-
 <!-- Tiny Floating Robot (Moved to root for fixed positioning) -->
 <div class="robot-widget" id="floatingRobot">
-  <div class="robot small-robot">
-    <div class="robot-head">
-      <div class="robot-face">
-        <div class="robot-eye"><div class="robot-pupil"></div></div>
-        <div class="robot-eye"><div class="robot-pupil"></div></div>
-      </div>
-    </div>
-  </div>
+<div class="robot small-robot">
+<div class="robot-head">
+<div class="robot-face">
+<div class="robot-eye"><div class="robot-pupil"></div></div>
+<div class="robot-eye"><div class="robot-pupil"></div></div>
 </div>
-
+</div>
+</div>
+</div>
 <!-- NAV -->
 <nav class="nav fade-in-up delay-1" id="nav">
-  <div class="nav-logo">
-    <span class="logo-bracket">&lt;</span>JSA<span class="logo-bracket">/&gt;</span>
-  </div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact" class="nav-cta">Contact</a></li>
-  </ul>
+<div class="nav-logo">
+<span class="logo-bracket">&lt;</span>JSA<span class="logo-bracket">/&gt;</span>
+</div>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a class="nav-cta" href="#contact">Contact</a></li>
+</ul>
 </nav>
-
 <!-- Background Orbs -->
 <div class="bg-orbs">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
 </div>
-
 <!-- HERO -->
 <section class="hero" id="hero">
-  <!-- Expensive Background Elements -->
-  <div class="hero-bg-elements">
-    <div class="glowing-orb orb-1"></div>
-    <div class="glowing-orb orb-2"></div>
-  </div>
-
-  <div class="container hero-container">
-    <div class="hero-content">
-      <div class="hero-badge fade-in-up delay-2">
-        <span class="badge-dot"></span>
+<!-- Expensive Background Elements -->
+<div class="hero-bg-elements">
+<div class="glowing-orb orb-1"></div>
+<div class="glowing-orb orb-2"></div>
+</div>
+<div class="container hero-container">
+<div class="hero-content">
+<div class="hero-badge fade-in-up delay-2">
+<span class="badge-dot"></span>
         Available for opportunities
       </div>
-      <h1 class="hero-title">
-        <span class="title-line" data-text="Jaya Sai">Jaya Sai</span>
-        <span class="title-line accent" data-text="Abhiram">Abhiram</span>
-      </h1>
-      <div class="hero-roles fade-in-up delay-4">
-        <span class="role-text" id="roleText">Creative Production Lead</span>
-        <span class="role-cursor">|</span>
-      </div>
-      <p class="hero-desc" style="max-width: 500px;">
-        Architecting digital experiences at the intersection of Marketing, Data, and GenAI.
+<h1 class="hero-title">
+<span class="title-line" data-text="Jaya Sai">Jaya Sai</span>
+<span class="title-line accent" data-text="Abhiram">Abhiram</span>
+</h1>
+<div class="hero-roles fade-in-up delay-4">
+<span class="role-text" id="roleText">Aspiring Data Analyst</span>
+<span class="role-cursor">|</span>
+</div>
+<p class="hero-desc" style="max-width: 500px;">
+        Architecting scalable solutions at the intersection of Software Engineering and Data Analytics.
       </p>
-      <div class="hero-actions fade-in-up delay-4">
-        <!-- Empty span as anchor for the robot in hero state -->
-        <a href="#experience" class="btn btn-primary" id="heroBtn">Explore Work</a>
-        <span id="heroRobotAnchor" style="display:inline-block; width:60px; height:60px;"></span>
-      </div>
-    </div>
-
-    <!-- Large 3D Robot Hero Graphic -->
-    <div class="large-robot-wrapper fade-in-up delay-3">
-      <div class="robot-origin-lines"></div>
-      
-      <div class="big-robot" id="bigRobot">
-        <div class="br-antenna">
-          <div class="br-antenna-ball"></div>
-          <div class="br-antenna-stick"></div>
-        </div>
-        <div class="br-head">
-          <div class="br-face">
-            <div class="br-eye"><div class="br-pupil"></div></div>
-            <div class="br-eye"><div class="br-pupil"></div></div>
-          </div>
-          <div class="br-ears">
-            <div class="br-ear left"></div>
-            <div class="br-ear right"></div>
-          </div>
-        </div>
-        <div class="br-body">
-          <div class="br-core">
-            <div class="br-core-bar"></div><div class="br-core-bar"></div><div class="br-core-bar"></div><div class="br-core-bar"></div><div class="br-core-bar"></div>
-          </div>
-        </div>
-      </div>
-      <!-- Sci-Fi HUD Panels -->
-      <video class="br-robot" autoplay loop muted playsinline>
-        <source src="assets/bg-robot.webm" type="video/webm">
-      </video>
-      <div class="hud-system">
-        <div class="hud-panel panel-tl">
-          <div class="hud-card">
-            <div class="hud-dot" style="background: #3b82f6;"></div>
-            <span>Creative Production Lead</span>
-          </div>
-        </div>
-        
-        <div class="hud-panel panel-tr">
-          <div class="hud-card">
-            <div class="hud-dot" style="background: #8b5cf6;"></div>
-            <span>Motion Designer</span>
-          </div>
-        </div>
-        
-        <div class="hud-panel panel-bl">
-          <div class="hud-card">
-            <div class="hud-dot" style="background: #10b981;"></div>
-            <span>Performance Marketing</span>
-          </div>
-        </div>
-        
-        <div class="hud-panel panel-br">
-          <div class="hud-card">
-            <div class="hud-dot" style="background: #f43f5e;"></div>
-            <span>Data Analyst</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="hero-actions fade-in-up delay-4">
+<!-- Empty span as anchor for the robot in hero state -->
+<a class="btn btn-primary" href="#experience" id="heroBtn">Explore Work</a>
+<span id="heroRobotAnchor" style="display:inline-block; width:60px; height:60px;"></span>
+</div>
+</div>
+<!-- Large 3D Robot Hero Graphic -->
+<div class="large-robot-wrapper fade-in-up delay-3">
+<div class="robot-origin-lines"></div>
+<div class="big-robot" id="bigRobot">
+<div class="br-antenna">
+<div class="br-antenna-ball"></div>
+<div class="br-antenna-stick"></div>
+</div>
+<div class="br-head">
+<div class="br-face">
+<div class="br-eye"><div class="br-pupil"></div></div>
+<div class="br-eye"><div class="br-pupil"></div></div>
+</div>
+<div class="br-ears">
+<div class="br-ear left"></div>
+<div class="br-ear right"></div>
+</div>
+</div>
+<div class="br-body">
+<div class="br-core">
+<div class="br-core-bar"></div><div class="br-core-bar"></div><div class="br-core-bar"></div><div class="br-core-bar"></div><div class="br-core-bar"></div>
+</div>
+</div>
+</div>
+<!-- Sci-Fi HUD Panels -->
+<video autoplay="" class="br-robot" loop="" muted="" playsinline="">
+<source src="assets/bg-robot.webm" type="video/webm"/>
+</video>
+<div class="hud-system">
+<div class="hud-panel panel-tl">
+<div class="hud-card">
+<div class="hud-dot" style="background: #3b82f6;"></div>
+<span>Software Engineer</span>
+</div>
+</div>
+<div class="hud-panel panel-tr">
+<div class="hud-card">
+<div class="hud-dot" style="background: #8b5cf6;"></div>
+<span>Data Analyst</span>
+</div>
+</div>
+<div class="hud-panel panel-bl">
+<div class="hud-card">
+<div class="hud-dot" style="background: #10b981;"></div>
+<span>Backend Architecture</span>
+</div>
+</div>
+<div class="hud-panel panel-br">
+<div class="hud-card">
+<div class="hud-dot" style="background: #f43f5e;"></div>
+<span>Python Developer</span>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ABOUT -->
 <section class="about section tracked-section" id="about">
-  <div class="container">
-    <div class="section-label">01 — About</div>
-    <h2 class="section-title tracking-target">Data meets <span class="accent">Design</span></h2>
-    <div class="about-grid">
+<div class="container">
+<div class="section-label">01 — About</div>
+<h2 class="section-title tracking-target">Engineering meets <span class="accent">Data</span></h2>
+<div class="about-grid">
       <div class="about-text">
-        <p>Computer Science graduate combining Data Analytics with Performance Marketing & Video Editing. Currently the Creative Production Lead at Digpat Solutions.</p>
-        <p>I leverage GenAI tools to build immersive web experiences and optimize production workflows.</p>
+        <p>Computer Science graduate specializing in Software Engineering and Data Analytics. Passionate about building robust systems and extracting actionable insights.</p>
+        <p>Currently expanding my technical repertoire while serving as Creative Production Lead at Digpat Solutions, blending analytical problem-solving with creative execution.</p>
         <div class="about-certs">
-          <div class="cert-badge glow-on-hover">🏆 Salesforce AI Associate</div>
-          <div class="cert-badge glow-on-hover">🎓 TCS iON Professional</div>
-        </div>
-      </div>
-      
-      <div class="about-visual tracking-target interactive-robot-target" data-robot-pos="left">
-        <div class="morphing-shape">
-          <div class="shape-inner">
-            <div class="shape-text">
-              <span class="big-percent">CS</span>
-              <span class="percent-label">Graduate</span>
-            </div>
-          </div>
-        </div>
-        <div class="floating-tags">
-          <span class="tag t1">Data Analytics</span>
-          <span class="tag t2">SEO</span>
-          <span class="tag t3">GenAI</span>
-          <span class="tag t4">SEM</span>
-          <span class="tag t5">Power BI</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="projects section tracked-section" id="projects">
-  <div class="container">
-    <div class="section-label">02 — Projects</div>
-    <h2 class="section-title tracking-target" data-robot-pos="right">Creative <span class="accent">Lab</span></h2>
-
-    <div class="projects-grid">
-<!-- Node Sphere Rendering -->
-      <a href="project-nodejs.html" class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="right">
-        <div class="pc-face">
-          <div class="pc-icon"><span class="anim-spin-emoji" style="display:inline-block">🌍</span></div>
-          <div class="pc-content">
-            <h3>Node Sphere</h3>
-          </div>
-          <div class="pc-arrow">↗</div>
-        </div>
-      </a>
-<!-- Admin Framework -->
-      <a href="project-react-admin.html" class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="left">
-        <div class="pc-face">
-          <div class="pc-icon"><span class="anim-spin-emoji" style="display:inline-block">⚙️</span></div>
-          <div class="pc-content">
-            <h3>Admin Framework</h3>
-          </div>
-          <div class="pc-arrow">↗</div>
-        </div>
-      </a>
-<!-- Ride Flow Project -->
-      <a href="project-ride-flow.html" class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="right">
-        <div class="pc-face">
-          <div class="pc-icon pc-car-wrapper" style="position: relative;">
-            <div class="anim-smoke smoke-1"></div>
-            <div class="anim-smoke smoke-2"></div>
-            <span class="anim-bounce-emoji" style="display:inline-block; position:relative; z-index:2;">🚗</span>
-          </div>
-          <div class="pc-content">
-            <h3>Ride Flow</h3>
-          </div>
-          <div class="pc-arrow">↗</div>
-        </div>
-      </a>
-<!-- AB Events Project -->
-      <a href="project-ab-events.html" class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="left">
-        <div class="pc-face">
-          <div class="pc-icon"><span class="anim-rock-emoji" style="display:inline-block">📅</span></div>
-          <div class="pc-content">
-            <h3>AB Events</h3>
-          </div>
-          <div class="pc-arrow">↗</div>
-        </div>
-      </a>
-<!-- Project 1 (3D Landing) -->
-      <a href="project-3d-landing.html" class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="right">
-        <div class="pc-face">
-          <div class="pc-icon"><span class="anim-float-emoji" style="display:inline-block">🧊</span></div>
-          <div class="pc-content">
-            <h3>3D Landing</h3>
-          </div>
-          <div class="pc-arrow">↗</div>
-        </div>
-      </a>
-<!-- Web Portfolio -->
-      <a href="project-portfolio.html" class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="left">
-        <div class="pc-face">
-          <div class="pc-icon"><span class="anim-spin-emoji" style="display:inline-block">✨</span></div>
-          <div class="pc-content">
-            <h3>Web Portfolio</h3>
-          </div>
-          <div class="pc-arrow">↗</div>
-        </div>
-      </a>
-<!-- Project 2 -->
-      <a href="project-student-predictor.html" class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="right">
-        <div class="pc-face">
-          <div class="pc-icon"><span class="anim-bounce-emoji" style="display:inline-block">📊</span></div>
-          <div class="pc-content">
-            <h3>Student Predictor</h3>
-          </div>
-          <div class="pc-arrow">↗</div>
-        </div>
-      </a>
-<!-- Project 4 -->
-      <a href="project-ai-automation.html" class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="left">
-        <div class="pc-face">
-          <div class="pc-icon"><span class="anim-wiggle-emoji" style="display:inline-block">🤖</span></div>
-          <div class="pc-content">
-            <h3>AI Automation</h3>
-          </div>
-          <div class="pc-arrow">→</div>
-        </div>
-      </a>
-<!-- Project 3 -->
-      <a href="project-sales-dashboard.html" class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="left">
-        <div class="pc-face">
-          <div class="pc-icon"><span class="anim-rock-emoji" style="display:inline-block">📈</span></div>
-          <div class="pc-content">
-            <h3>Sales Analytics</h3>
-          </div>
-          <div class="pc-arrow">→</div>
-        </div>
-      </a>
+<div class="cert-badge glow-on-hover">🏆 Salesforce AI Associate</div>
+<div class="cert-badge glow-on-hover">🎓 TCS iON Professional</div>
 </div>
-  </div>
+</div>
+<div class="about-visual tracking-target interactive-robot-target" data-robot-pos="left">
+<div class="morphing-shape">
+<div class="shape-inner">
+<div class="shape-text">
+<span class="big-percent">CS</span>
+<span class="percent-label">Graduate</span>
+</div>
+</div>
+</div>
+<div class="floating-tags">
+<span class="tag t1">Data Analytics</span>
+<span class="tag t2">Software Engineering</span>
+<span class="tag t3">Python</span>
+<span class="tag t4">SQL</span>
+<span class="tag t5">Power BI</span>
+</div>
+</div>
+</div>
+</div>
 </section>
-
+<section class="projects section tracked-section" id="projects">
+<div class="container">
+<div class="section-label">02 — Projects</div>
+<h2 class="section-title tracking-target" data-robot-pos="right">Creative <span class="accent">Lab</span></h2>
+<div class="projects-grid">
+<!-- Node Sphere Rendering -->
+<a class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="right" href="project-nodejs.html">
+<div class="pc-face">
+<div class="pc-icon"><span class="anim-spin-emoji" style="display:inline-block">🌍</span></div>
+<div class="pc-content">
+<h3>Node Sphere</h3>
+</div>
+<div class="pc-arrow">↗</div>
+</div>
+</a>
+<!-- Admin Framework -->
+<a class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="left" href="project-react-admin.html">
+<div class="pc-face">
+<div class="pc-icon"><span class="anim-spin-emoji" style="display:inline-block">⚙️</span></div>
+<div class="pc-content">
+<h3>Admin Framework</h3>
+</div>
+<div class="pc-arrow">↗</div>
+</div>
+</a>
+<!-- Ride Flow Project -->
+<a class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="right" href="project-ride-flow.html">
+<div class="pc-face">
+<div class="pc-icon pc-car-wrapper" style="position: relative;">
+<div class="anim-smoke smoke-1"></div>
+<div class="anim-smoke smoke-2"></div>
+<span class="anim-bounce-emoji" style="display:inline-block; position:relative; z-index:2;">🚗</span>
+</div>
+<div class="pc-content">
+<h3>Ride Flow</h3>
+</div>
+<div class="pc-arrow">↗</div>
+</div>
+</a>
+<!-- AB Events Project -->
+<a class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="left" href="project-ab-events.html">
+<div class="pc-face">
+<div class="pc-icon"><span class="anim-rock-emoji" style="display:inline-block">📅</span></div>
+<div class="pc-content">
+<h3>AB Events</h3>
+</div>
+<div class="pc-arrow">↗</div>
+</div>
+</a>
+<!-- Project 1 (3D Landing) -->
+<a class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="right" href="project-3d-landing.html">
+<div class="pc-face">
+<div class="pc-icon"><span class="anim-float-emoji" style="display:inline-block">🧊</span></div>
+<div class="pc-content">
+<h3>3D Landing</h3>
+</div>
+<div class="pc-arrow">↗</div>
+</div>
+</a>
+<!-- Web Portfolio -->
+<a class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="left" href="project-portfolio.html">
+<div class="pc-face">
+<div class="pc-icon"><span class="anim-spin-emoji" style="display:inline-block">✨</span></div>
+<div class="pc-content">
+<h3>Web Portfolio</h3>
+</div>
+<div class="pc-arrow">↗</div>
+</div>
+</a>
+<!-- Project 2 -->
+<a class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="right" href="project-student-predictor.html">
+<div class="pc-face">
+<div class="pc-icon"><span class="anim-bounce-emoji" style="display:inline-block">📊</span></div>
+<div class="pc-content">
+<h3>Student Predictor</h3>
+</div>
+<div class="pc-arrow">↗</div>
+</div>
+</a>
+<!-- Project 4 -->
+<a class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="left" href="project-ai-automation.html">
+<div class="pc-face">
+<div class="pc-icon"><span class="anim-wiggle-emoji" style="display:inline-block">🤖</span></div>
+<div class="pc-content">
+<h3>AI Automation</h3>
+</div>
+<div class="pc-arrow">→</div>
+</div>
+</a>
+<!-- Project 3 -->
+<a class="project-card tilt-panel tracking-target-sub interactive-robot-target" data-robot-pos="left" href="project-sales-dashboard.html">
+<div class="pc-face">
+<div class="pc-icon"><span class="anim-rock-emoji" style="display:inline-block">📈</span></div>
+<div class="pc-content">
+<h3>Sales Analytics</h3>
+</div>
+<div class="pc-arrow">→</div>
+</div>
+</a>
+</div>
+</div>
+</section>
 <section class="skills section tracked-section" id="skills">
 <div class="container">
 <div class="section-label">03 — Skills</div>
@@ -295,9 +280,6 @@
 <span>Python</span><span>C++</span><span>SQL</span><span>Power BI</span>
 </div>
 </div>
-
-
-
 <div class="middle-row" style="grid-column: span 2; display: flex; gap: 1.5rem;"><div class="bento-card glow-on-hover" data-category="genai" style="flex: 1; padding: 1.2rem; align-items: center; text-align: center;">
 <h3 style="text-align: center; font-size: 1.1rem; margin-bottom: 0.5rem;">Generative AI</h3>
 <div class="bento-tags" style="flex-wrap: wrap; gap: 0.4rem; justify-content: center;">
@@ -356,128 +338,117 @@
 </div>
 </div>
 </section>
-
 <section class="experience section tracked-section" id="experience">
-  <div class="container">
-    <div class="section-label">04 — Experience</div>
-    <h2 class="section-title tracking-target">The <span class="accent">Journey</span></h2>
-    
-    <div class="timeline">
-      <!-- Left side -->
-      <div class="tl-item tl-left">
-        <div class="tl-dot"></div>
-        <!-- Right aligned content inside -->
-        <div class="tl-card-wrapper tl-card-left">
-          <div class="tl-card glow-on-hover tracking-target-sub interactive-robot-target" data-robot-pos="left">
-            <div class="exp-header">
-              <div class="exp-title">
-                <h3>Creative Production Lead</h3>
-                <span class="exp-company" style="display: flex; align-items: center; gap: 0.5rem;"><span class="color-shifting-dot"></span> <a href="https://abhiramjammu.github.io/workflow/" target="_blank" class="gradient-link">(Workflow Portfolio)</a> Digpat Solutions</span>
-              </div>
-              <span class="exp-date">Dec 2025 — Present</span>
-            </div>
-            <div class="exp-details">
-              <ul>
-                <li>Communicated directly with clients to define requirements and align on project vision.</li>
-                <li>Collaborated across cross-functional teams to ensure timely delivery of high-quality assets.</li>
-                <li>Elevated brand messaging through visual narratives.</li>
-                <li>Managed multifaceted production workflows.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="portfolio-preview-container tl-preview-right">
-          <a href="https://abhiramjammu.github.io/workflow/" class="iframe-wrapper">
-             <iframe src="https://abhiramjammu.github.io/workflow/" class="portfolio-iframe iframe-workflow" loading="lazy" scrolling="no"></iframe>
-          </a>
-        </div>
-      </div>
-
-      <!-- Right side -->
-      <div class="tl-item tl-right">
-        <div class="tl-dot"></div>
-        <!-- Left aligned content inside -->
-        <div class="tl-card-wrapper tl-card-right">
-          <div class="tl-card glow-on-hover tracking-target-sub interactive-robot-target" data-robot-pos="right">
-            <div class="exp-header">
-              <div class="exp-title">
-                <h3>Performance Marketing & Video Editing</h3>
-                <span class="exp-company" style="display: flex; align-items: center; gap: 0.5rem;">Freelance <a href="https://abhiramjammu.github.io/portifolio/" target="_blank" class="gradient-link">(Freelance Portfolio)</a> <span class="color-shifting-dot"></span></span>
-              </div>
-              <span class="exp-date">Aug 2023 — Dec 2025</span>
-            </div>
-            <div class="exp-details">
-              <ul>
-                <li>Produced high-quality cinematic reels.</li>
-                <li>Leveraged AI tools for rapid generation.</li>
-                <li>Engineered interactive web campaigns.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="portfolio-preview-container tl-preview-left">
-          <a href="https://abhiramjammu.github.io/portifolio/" class="iframe-wrapper">
-             <iframe src="https://abhiramjammu.github.io/portifolio/" class="portfolio-iframe iframe-freelance" loading="lazy" scrolling="no"></iframe>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="section-label">04 — Experience</div>
+<h2 class="section-title tracking-target">The <span class="accent">Journey</span></h2>
+<div class="timeline">
+<!-- Left side -->
+<div class="tl-item tl-left">
+<div class="tl-dot"></div>
+<!-- Right aligned content inside -->
+<div class="tl-card-wrapper tl-card-left">
+<div class="tl-card glow-on-hover tracking-target-sub interactive-robot-target" data-robot-pos="left">
+<div class="exp-header">
+<div class="exp-title">
+<h3>Creative Production Lead</h3>
+<span class="exp-company" style="display: flex; align-items: center; gap: 0.5rem;"><span class="color-shifting-dot"></span> <a class="gradient-link" href="https://abhiramjammu.github.io/workflow/" target="_blank">(Workflow Portfolio)</a> Digpat Solutions</span>
+</div>
+<span class="exp-date">Dec 2025 — Present</span>
+</div>
+<div class="exp-details">
+<ul>
+<li>Communicated directly with clients to define requirements and align on project vision.</li>
+<li>Collaborated across cross-functional teams to ensure timely delivery of high-quality assets.</li>
+<li>Elevated brand messaging through visual narratives.</li>
+<li>Managed multifaceted production workflows.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="portfolio-preview-container tl-preview-right">
+<a class="iframe-wrapper" href="https://abhiramjammu.github.io/workflow/">
+<iframe class="portfolio-iframe iframe-workflow" loading="lazy" scrolling="no" src="https://abhiramjammu.github.io/workflow/"></iframe>
+</a>
+</div>
+</div>
+<!-- Right side -->
+<div class="tl-item tl-right">
+<div class="tl-dot"></div>
+<!-- Left aligned content inside -->
+<div class="tl-card-wrapper tl-card-right">
+<div class="tl-card glow-on-hover tracking-target-sub interactive-robot-target" data-robot-pos="right">
+<div class="exp-header">
+<div class="exp-title">
+<h3>Performance Marketing &amp; Video Editing</h3>
+<span class="exp-company" style="display: flex; align-items: center; gap: 0.5rem;">Freelance <a class="gradient-link" href="https://abhiramjammu.github.io/portifolio/" target="_blank">(Freelance Portfolio)</a> <span class="color-shifting-dot"></span></span>
+</div>
+<span class="exp-date">Aug 2023 — Dec 2025</span>
+</div>
+<div class="exp-details">
+<ul>
+<li>Produced high-quality cinematic reels.</li>
+<li>Leveraged AI tools for rapid generation.</li>
+<li>Engineered interactive web campaigns.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="portfolio-preview-container tl-preview-left">
+<a class="iframe-wrapper" href="https://abhiramjammu.github.io/portifolio/">
+<iframe class="portfolio-iframe iframe-freelance" loading="lazy" scrolling="no" src="https://abhiramjammu.github.io/portifolio/"></iframe>
+</a>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <section class="education section" id="education">
-  <div class="container">
-    <div class="section-label">05 — Education</div>
-    <h2 class="section-title tracking-target" data-robot-pos="right">Education</h2>
-    <div class="edu-cards">
-      <div class="edu-card glass-panel glow-on-hover">
-        <div class="edu-year">2021 – 2025</div>
-        <div class="edu-degree">B.Tech in CS</div>
-        <div class="edu-institution">Mallareddy Institute of Technology</div>
-        <div class="edu-score">
-          <span>CGPA</span><span>7.5</span>
-        </div>
-        <div class="edu-bar-wrap"><div class="edu-bar" style="width: 75%"></div></div>
-      </div>
-      
-      <div class="edu-card glass-panel glow-on-hover">
-        <div class="edu-year">2026 - 2027</div>
-        <div class="edu-degree">MBA in Digital Marketing</div>
-        <div class="edu-institution" style="display: flex; align-items: center;">KL University (Distance)<span class="blinking-dot"></span><span style="color: #10b981; font-weight: 600; font-size: 0.9rem;">Ongoing</span></div>
-        <div class="edu-score" style="visibility: hidden;">
-          <span>Align</span><span>Align</span>
-        </div>
-        <div class="edu-bar-wrap"><div class="loading-bar-striped" style="width: 50%"></div></div>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="section-label">05 — Education</div>
+<h2 class="section-title tracking-target" data-robot-pos="right">Education</h2>
+<div class="edu-cards">
+<div class="edu-card glass-panel glow-on-hover">
+<div class="edu-year">2021 – 2025</div>
+<div class="edu-degree">B.Tech in CS</div>
+<div class="edu-institution">Mallareddy Institute of Technology</div>
+<div class="edu-score">
+<span>CGPA</span><span>7.5</span>
+</div>
+<div class="edu-bar-wrap"><div class="edu-bar" style="width: 75%"></div></div>
+</div>
+<div class="edu-card glass-panel glow-on-hover">
+<div class="edu-year">2026 - 2027</div>
+<div class="edu-degree">MBA in Digital Marketing</div>
+<div class="edu-institution" style="display: flex; align-items: center;">KL University (Distance)<span class="blinking-dot"></span><span style="color: #10b981; font-weight: 600; font-size: 0.9rem;">Ongoing</span></div>
+<div class="edu-score" style="visibility: hidden;">
+<span>Align</span><span>Align</span>
+</div>
+<div class="edu-bar-wrap"><div class="loading-bar-striped" style="width: 50%"></div></div>
+</div>
+</div>
+</div>
 </section>
-
 <section class="contact section" id="contact">
-  <div class="container">
-    <div class="section-label">06 — Contact</div>
-    <h2 class="section-title tracking-target" data-robot-pos="right">Let's <span class="accent">Connect</span></h2>
-    
-    <div class="contact-links">
-      <a href="mailto:jammuabhiram@gmail.com" class="contact-link glass-panel glow-on-hover interactive-robot-target" data-robot-pos="left">
-        <span class="cl-value">jammuabhiram@gmail.com</span>
-      </a>
-      <a href="tel:9959715732" class="contact-link glass-panel glow-on-hover interactive-robot-target" data-robot-pos="right">
-        <span class="cl-value">9959715732</span>
-      </a>
-    </div>
-  </div>
+<div class="container">
+<div class="section-label">06 — Contact</div>
+<h2 class="section-title tracking-target" data-robot-pos="right">Let's <span class="accent">Connect</span></h2>
+<div class="contact-links">
+<a class="contact-link glass-panel glow-on-hover interactive-robot-target" data-robot-pos="left" href="mailto:jammuabhiram@gmail.com">
+<span class="cl-value">jammuabhiram@gmail.com</span>
+</a>
+<a class="contact-link glass-panel glow-on-hover interactive-robot-target" data-robot-pos="right" href="tel:9959715732">
+<span class="cl-value">9959715732</span>
+</a>
+</div>
+</div>
 </section>
-
-
-
 <footer class="footer">
-  <div class="footer-inner">
-    <p class="footer-copy">© 2025 Jaya Sai Abhiram Jammu.</p>
-  </div>
+<div class="footer-inner">
+<p class="footer-copy">© 2025 Jaya Sai Abhiram Jammu.</p>
+</div>
 </footer>
-
-<script src="main.js?v=20" defer></script>
-<script src="js/creative-bg.js" defer></script>
+<script defer="" src="main.js?v=20"></script>
+<script defer="" src="js/creative-bg.js"></script>
 </body>
 </html>

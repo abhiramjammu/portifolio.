@@ -286,7 +286,7 @@ tiltPanels.forEach(panel => {
 // ─── HERO TYPING EFFECT ───
 const roleText = document.getElementById('roleText');
 if(roleText) {
-  const roles = ["Creative Production Lead", "Performance Marketing", "Motion Designer", "Data Analyst"];
+  const roles = ["Aspiring Data Analyst", "Software Engineer", "Creative Production Lead"];
   let roleIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
