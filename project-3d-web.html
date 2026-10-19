@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Web Experiences | Jaya Sai Abhiram</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/scrollytelling.css?v=16">
+  <script src="js/scrollytelling.js?v=16" defer></script>
+  <style>
+    /* ── Animated Gradient Background ── */
+    .gen-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #0a0a2e 0%, #16213e 30%, #0f3460 60%, #1a1a2e 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+      overflow: hidden;
+    }
+
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating orbs for depth */
+    .gen-bg::before,
+    .gen-bg::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      will-change: transform;
+    }
+
+    .gen-bg::before {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,214,255,0.5), transparent 70%);
+      top: 10%; left: 15%;
+      animation: floatOrb1 14s ease-in-out infinite;
+    }
+
+    .gen-bg::after {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(99,102,241,0.5), transparent 70%);
+      bottom: 10%; right: 10%;
+      animation: floatOrb2 18s ease-in-out infinite;
+    }
+
+    @keyframes floatOrb1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%      { transform: translate(60px, -40px) scale(1.1); }
+      66%      { transform: translate(-30px, 50px) scale(0.95); }
+    }
+
+    @keyframes floatOrb2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%      { transform: translate(-50px, 30px) scale(1.05); }
+      66%      { transform: translate(40px, -60px) scale(0.9); }
+    }
+
+    /* Extra floating particle layer */
+    .bg-particles {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-particles::before {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16,185,129,0.3), transparent 70%);
+      filter: blur(60px);
+      top: 60%; left: 55%;
+      animation: floatOrb3 22s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    .bg-particles::after {
+      content: '';
+      position: absolute;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(244,63,94,0.25), transparent 70%);
+      filter: blur(70px);
+      top: 25%; right: 25%;
+      animation: floatOrb4 16s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    @keyframes floatOrb3 {
+      0%, 100% { transform: translate(0, 0); }
+      50%      { transform: translate(-70px, -40px); }
+    }
+
+    @keyframes floatOrb4 {
+      0%, 100% { transform: translate(0, 0); }
+      50%      { transform: translate(50px, 60px); }
+    }
+
+    /* ── CSS-Only Rotating 3D Wireframe Cube ── */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .cube-scene {
+      width: 160px; height: 160px;
+      perspective: 600px;
+    }
+
+    .cube {
+      width: 100%; height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotateCube 12s linear infinite;
+      will-change: transform;
+    }
+
+    .cube-face {
+      position: absolute;
+      width: 160px; height: 160px;
+      border: 1.5px solid rgba(0, 214, 255, 0.4);
+      background: rgba(0, 214, 255, 0.03);
+      box-shadow: inset 0 0 30px rgba(0, 214, 255, 0.05),
+                  0 0 15px rgba(0, 214, 255, 0.08);
+    }
+
+    .cube-face.front  { transform: translateZ(80px); }
+    .cube-face.back   { transform: rotateY(180deg) translateZ(80px); }
+    .cube-face.right  { transform: rotateY(90deg) translateZ(80px); }
+    .cube-face.left   { transform: rotateY(-90deg) translateZ(80px); }
+    .cube-face.top    { transform: rotateX(90deg) translateZ(80px); }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(80px); }
+
+    @keyframes rotateCube {
+      0%   { transform: rotateX(-20deg) rotateY(0deg); }
+      100% { transform: rotateX(-20deg) rotateY(360deg); }
+    }
+
+    /* Glow ring behind cube */
+    .cube-glow {
+      position: absolute;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,214,255,0.12) 0%, transparent 70%);
+      animation: pulseGlow 4s ease-in-out infinite;
+      will-change: opacity;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50%      { opacity: 1; transform: scale(1.1); }
+    }
+
+    /* ── Metric Highlights ── */
+    .metric-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .metric-item {
+      text-align: center;
+      flex: 1;
+      min-width: 100px;
+    }
+
+    .metric-value {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00D6FF, #6366f1);
+      -webkit-background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+    }
+
+    /* ── Tech Stack Tags ── */
+    .tech-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+
+    .tech-tag {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(0,214,255,0.2);
+      color: rgba(0,214,255,0.7);
+      background: rgba(0,214,255,0.05);
+    }
+
+    /* ── Architecture Diagram (CSS-only) ── */
+    .arch-diagram {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .arch-layer {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .arch-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .arch-icon.cyan    { background: rgba(0,214,255,0.15); border: 1px solid rgba(0,214,255,0.3); }
+    .arch-icon.purple  { background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3); }
+    .arch-icon.green   { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); }
+    .arch-icon.amber   { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); }
+
+    .arch-text {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.4;
+    }
+
+    .arch-text strong {
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+    }
+
+    .arch-connector {
+      width: 2px; height: 12px;
+      background: rgba(0,214,255,0.15);
+      margin-left: 17px;
+      border-radius: 1px;
+    }
+
+    /* ── Outcome section ── */
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .outcome-card {
+      padding: 1.25rem;
+      border-radius: 1rem;
+      background: rgba(0,214,255,0.04);
+      border: 1px solid rgba(0,214,255,0.1);
+      text-align: center;
+    }
+
+    .outcome-card .metric-value {
+      font-size: 1.75rem;
+    }
+
+    .outcome-card .metric-label {
+      font-size: 0.7rem;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .cube-scene { width: 120px; height: 120px; }
+      .cube-face { width: 120px; height: 120px; }
+      .cube-face.front  { transform: translateZ(60px); }
+      .cube-face.back   { transform: rotateY(180deg) translateZ(60px); }
+      .cube-face.right  { transform: rotateY(90deg) translateZ(60px); }
+      .cube-face.left   { transform: rotateY(-90deg) translateZ(60px); }
+      .cube-face.top    { transform: rotateX(90deg) translateZ(60px); }
+      .cube-face.bottom { transform: rotateX(-90deg) translateZ(60px); }
+      .cube-glow { width: 180px; height: 180px; }
+      .outcome-grid { grid-template-columns: 1fr; }
+      .intro-text h1 { font-size: 3rem !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header class="scrolly-header">
+    <a href="index.html" class="btn-back">← Back to Portfolio</a>
+    <span class="scrolly-logo">3D Web Experiences</span>
+  </header>
+
+  <!-- Massive Scroll Container -->
+  <main class="scrolly-container">
+
+    <!-- Fixed Background with Animated Gradient -->
+    <div class="fixed-bg">
+      <div class="gen-bg"></div>
+      <div class="bg-particles"></div>
+      <div class="bg-mask-layer"></div>
+    </div>
+
+    <!-- Section 1: Hero Intro -->
+    <section class="scrolly-section center intro-text" data-start="0.0" data-end="0.15">
+      <div class="hero-visual">
+        <div class="cube-glow"></div>
+        <div class="cube-scene">
+          <div class="cube">
+            <div class="cube-face front"></div>
+            <div class="cube-face back"></div>
+            <div class="cube-face right"></div>
+            <div class="cube-face left"></div>
+            <div class="cube-face top"></div>
+            <div class="cube-face bottom"></div>
+          </div>
+        </div>
+      </div>
+      <h1>3D Web Experiences</h1>
+      <p>Immersive, GPU-accelerated interfaces built without a single 3D library.</p>
+    </section>
+
+    <!-- Section 2: The Challenge -->
+    <section class="scrolly-section left" data-start="0.2" data-end="0.35">
+      <div class="glass-panel">
+        <span class="glass-tag">The Challenge</span>
+        <h2 class="glass-title">Immersive, but instant.</h2>
+        <p class="glass-desc">
+          Clients at Digpat Solutions wanted websites that felt like native 3D apps — depth, motion, parallax — but every existing solution meant shipping heavy Three.js bundles or Unity WebGL exports that crushed mobile performance. I needed to deliver 60fps 3D interactions on mobile devices with under 2-second load times, all without sacrificing the wow factor.
+        </p>
+        <div class="metric-row">
+          <div class="metric-item">
+            <div class="metric-value">&lt;2s</div>
+            <div class="metric-label">Load Target</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">60fps</div>
+            <div class="metric-label">Min. Framerate</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">0KB</div>
+            <div class="metric-label">3D Library Size</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: The Approach -->
+    <section class="scrolly-section right" data-start="0.4" data-end="0.55">
+      <div class="glass-panel">
+        <span class="glass-tag">The Approach</span>
+        <h2 class="glass-title">AI-powered rapid prototyping.</h2>
+        <p class="glass-desc">
+          I used Claude AI as a pair programmer to rapidly prototype 3D CSS transforms and lightweight WebGL shaders — turning ideas into working demos in minutes, not days. Built custom parallax engines and cursor-reactive particle systems from scratch. Every interaction was hand-tuned for GPU compositing. Claude helped me iterate through 40+ shader variations in a single afternoon, reducing overall development time by 70%.
+        </p>
+        <div class="tech-tags">
+          <span class="tech-tag">Claude AI</span>
+          <span class="tech-tag">CSS 3D Transforms</span>
+          <span class="tech-tag">WebGL Shaders</span>
+          <span class="tech-tag">Google Antigravity</span>
+          <span class="tech-tag">requestAnimationFrame</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Technical Architecture -->
+    <section class="scrolly-section left" data-start="0.6" data-end="0.75">
+      <div class="glass-panel">
+        <span class="glass-tag">Technical Architecture</span>
+        <h2 class="glass-title">Zero-dependency 3D stack.</h2>
+        <p class="glass-desc">
+          Every layer is purpose-built for performance. No runtime overhead, no framework tax — just the browser's native rendering pipeline pushed to its limit.
+        </p>
+        <div class="arch-diagram">
+          <div class="arch-layer">
+            <div class="arch-icon cyan">◇</div>
+            <div class="arch-text"><strong>CSS preserve-3d</strong> — Layered depth with hardware-accelerated transforms</div>
+          </div>
+          <div class="arch-connector"></div>
+          <div class="arch-layer">
+            <div class="arch-icon purple">◈</div>
+            <div class="arch-text"><strong>requestAnimationFrame</strong> — Vsync-locked 60fps update loop</div>
+          </div>
+          <div class="arch-connector"></div>
+          <div class="arch-layer">
+            <div class="arch-icon green">▣</div>
+            <div class="arch-text"><strong>GPU Compositing</strong> — will-change & translateZ for dedicated layers</div>
+          </div>
+          <div class="arch-connector"></div>
+          <div class="arch-layer">
+            <div class="arch-icon amber">◉</div>
+            <div class="arch-text"><strong>Cursor Reactivity</strong> — Pointer-driven parallax with lerp smoothing</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Outcome -->
+    <section class="scrolly-section center" data-start="0.8" data-end="1.0">
+      <div class="glass-panel" style="max-width: 800px;">
+        <span class="glass-tag">Results</span>
+        <h2 class="glass-title" style="font-size: 3.5rem;">The numbers speak.</h2>
+        <p class="glass-desc" style="font-size: 1.25rem;">
+          Successfully deployed across Digpat Solutions client presentations. These sites don't just look premium — they perform.
+        </p>
+        <div class="outcome-grid">
+          <div class="outcome-card">
+            <div class="metric-value">3×</div>
+            <div class="metric-label">Higher Engagement vs Static Sites</div>
+          </div>
+          <div class="outcome-card">
+            <div class="metric-value">4.2m</div>
+            <div class="metric-label">Avg. Session Duration</div>
+          </div>
+          <div class="outcome-card">
+            <div class="metric-value">70%</div>
+            <div class="metric-label">Dev Time Reduced with AI</div>
+          </div>
+        </div>
+        <a href="index.html"><button class="final-cta">Back to Portfolio</button></a>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
